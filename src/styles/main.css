@@ -1,0 +1,21 @@
+/* auth-layout.css */
+
+.auth-layout {
+  /* Add any additional styling for the layout container here */
+}
+
+.auth-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  max-width: 400px;
+  width: 100%;
+}
