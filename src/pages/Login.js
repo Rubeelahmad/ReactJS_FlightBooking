@@ -7,10 +7,10 @@ import {
   Button,
   FormControlLabel,
   Checkbox,
-  Link,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import AuthLayout from "../layouts/AuthLayout";
+import { Link } from "react-router-dom";
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
