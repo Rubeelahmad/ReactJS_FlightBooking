@@ -4,8 +4,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import "./styles/main.css";
-import AuthLayout from "./layouts/AuthLayout";
-import AuthRoutes from "./routes/AuthRoutes";
+import AuthLayout from "./layouts/AuthLayout/AuthLayout";
+import PublicRoutes from "./routes/PublicRoutes";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         </Routes>
       </AuthLayout>
       <Routes>
-        {AuthRoutes.map((route) => (
+        {PublicRoutes.map((route) => (
           <Route path={route.path} element={route.component} />
         ))}
         <Route path="/" element={<Home />} />

@@ -1,4 +1,4 @@
-const AuthRoutes = [
+const PublicRoutes = [
   {
     label: "About",
     path: "/about",
@@ -26,4 +26,4 @@ const AuthRoutes = [
   },
 ];
 
-export default AuthRoutes;
+export default PublicRoutes;

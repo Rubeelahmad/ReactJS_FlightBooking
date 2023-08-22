@@ -1,18 +1,32 @@
 .headerWrapper {
-  background-color: var(--main-bg-color);
   height: 103px;
   width: 100%;
-  border: 1px solid red
+  display: flex;
+  position: relative;
 }
 
 .headerInnerContainer {
   width: 70%;
   margin: auto;
-  border: 1px solid red
+  display: flex;
+  justify-content: space-between;
 }
 
-.header-left {
+.header-left,
+.header-right {
   display: flex;
   flex-direction: row;
-  column-gap: 10px;
+  column-gap: 30px;
+  align-items: center;
+}
+
+.loginChip {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border-color: var(--border-color);
+}
+
+.loginChip>span {
+  color: var(--primary-color) !important;
 }

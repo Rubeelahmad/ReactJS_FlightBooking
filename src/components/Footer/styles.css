@@ -1,0 +1,19 @@
+.footerWrapper {
+    width: 100%;
+    height: 107px;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerInnerContainer {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brandName {
+    color: var(--primary-color);
+}
