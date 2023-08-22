@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 
-function AuthLayout({ children }) {
+const AuthLayout = ({ children }) => {
   return (
     <div className="auth-layout">
       <Header />
@@ -10,6 +10,6 @@ function AuthLayout({ children }) {
       </main>
     </div>
   );
-}
+};
 
 export default AuthLayout;

@@ -7,7 +7,7 @@ import { ICONS } from "../../assets/icons";
 const Header = () => {
   return (
     <div className="headerWrapper">
-      <div className="headerInnerContainer">
+      <Stack className="headerInnerContainer">
         <Stack className="header-left">
           <span>{AuthRoutes.map(({ label }) => label)}</span>
         </Stack>
@@ -19,7 +19,7 @@ const Header = () => {
             variant="outlined"
           />
         </div>
-      </div>
+      </Stack>
     </div>
   );
 };

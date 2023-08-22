@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link } from "react-router-dom";
-import AuthLayout from "../layouts/AuthLayout";
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -42,42 +41,40 @@ const Register = () => {
   // Handle registration logic
 
   return (
-    <AuthLayout>
-      <AuthCard>
-        <CardContent>
-          <CenteredTypography variant="h6">
-            Register for New User
-          </CenteredTypography>
-          <Form noValidate autoComplete="off">
-            <TextField label="Full Name" fullWidth variant="outlined" />
-            <TextField label="Email" fullWidth variant="outlined" />
-            <TextField label="Phone Number" fullWidth variant="outlined" />
-            <TextField
-              label="Password"
-              fullWidth
-              variant="outlined"
-              type="password"
-            />
-            <TextField
-              label="Confirm Password"
-              fullWidth
-              variant="outlined"
-              type="password"
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="I agree to the terms of service and privacy policy"
-            />
-            <Button variant="contained" color="primary" fullWidth>
-              Register
-            </Button>
-          </Form>
-          <Typography variant="body2" color="textSecondary">
-            Already have an account? <Link to="/login">Login here.</Link>
-          </Typography>
-        </CardContent>
-      </AuthCard>
-    </AuthLayout>
+    <AuthCard>
+      <CardContent>
+        <CenteredTypography variant="h6">
+          Register for New User
+        </CenteredTypography>
+        <Form noValidate autoComplete="off">
+          <TextField label="Full Name" fullWidth variant="outlined" />
+          <TextField label="Email" fullWidth variant="outlined" />
+          <TextField label="Phone Number" fullWidth variant="outlined" />
+          <TextField
+            label="Password"
+            fullWidth
+            variant="outlined"
+            type="password"
+          />
+          <TextField
+            label="Confirm Password"
+            fullWidth
+            variant="outlined"
+            type="password"
+          />
+          <FormControlLabel
+            control={<Checkbox />}
+            label="I agree to the terms of service and privacy policy"
+          />
+          <Button variant="contained" color="primary" fullWidth>
+            Register
+          </Button>
+        </Form>
+        <Typography variant="body2" color="textSecondary">
+          Already have an account? <Link to="/login">Login here.</Link>
+        </Typography>
+      </CardContent>
+    </AuthCard>
   );
 };
 

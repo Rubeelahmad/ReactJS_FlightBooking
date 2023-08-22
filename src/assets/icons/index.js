@@ -1,5 +1,3 @@
-import ProfileIcon from "./profile.svg";
+import profileIcon from "./profile.svg";
 
-export const ICONS = {
-  profileIcon: <ProfileIcon />,
-};
+export const ICONS = { profileIcon };

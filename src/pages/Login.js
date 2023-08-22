@@ -9,7 +9,6 @@ import {
   Checkbox,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import AuthLayout from "../layouts/AuthLayout";
 import { Link } from "react-router-dom";
 
 const AuthCard = styled(Card)(({ theme }) => ({
@@ -68,38 +67,36 @@ const Login = () => {
   // Handle login logic
 
   return (
-    <AuthLayout>
-      <AuthCard>
-        <CardContent>
-          <CenteredImage src="profile.png" alt="Profile" />
-          <CenteredTypography variant="h6">
-            Login to Existing User
-          </CenteredTypography>
-          <Form noValidate autoComplete="off">
-            <TextField label="Email" fullWidth variant="outlined" />
-            <TextField
-              label="Password"
-              fullWidth
-              variant="outlined"
-              type="password"
+    <AuthCard>
+      <CardContent>
+        <CenteredImage src="profile.png" alt="Profile" />
+        <CenteredTypography variant="h6">
+          Login to Existing User
+        </CenteredTypography>
+        <Form noValidate autoComplete="off">
+          <TextField label="Email" fullWidth variant="outlined" />
+          <TextField
+            label="Password"
+            fullWidth
+            variant="outlined"
+            type="password"
+          />
+          <FlexContainer>
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Remember Login Info"
             />
-            <FlexContainer>
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Remember Login Info"
-              />
-              <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
-            </FlexContainer>
-            <Button variant="contained" color="primary" fullWidth>
-              Login
-            </Button>
-            <Typography variant="body2" color="textSecondary">
-              Don’t have an account? <Link to="/register">Create account</Link>
-            </Typography>
-          </Form>
-        </CardContent>
-      </AuthCard>
-    </AuthLayout>
+            <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
+          </FlexContainer>
+          <Button variant="contained" color="primary" fullWidth>
+            Login
+          </Button>
+          <Typography variant="body2" color="textSecondary">
+            Don’t have an account? <Link to="/register">Create account</Link>
+          </Typography>
+        </Form>
+      </CardContent>
+    </AuthCard>
   );
 };
 

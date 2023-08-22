@@ -12,14 +12,14 @@ function App() {
     <Router>
       <AuthLayout>
         <Routes>
-          {AuthRoutes.map((route) => (
-            <Route path={route.path} element={route.component} />
-          ))}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </AuthLayout>
       <Routes>
+        {AuthRoutes.map((route) => (
+          <Route path={route.path} element={route.component} />
+        ))}
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>
