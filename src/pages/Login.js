@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Card,
   CardContent,
@@ -9,7 +10,12 @@ import {
   Checkbox,
 } from "@mui/material";
 import { styled } from "@mui/system";
+import {
+  login,
+  loginInUserAsync,
+} from "../store/features/authentication/authSlice";
 import { Link } from "react-router-dom";
+import { validateEmail } from "../utils/helpers";
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -64,7 +70,36 @@ const ForgotPasswordLink = styled(Link)({
 });
 
 const Login = () => {
-  // Handle login logic
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [showOtpInput, setShowOtpInput] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic form validation
+    const newErrors = {};
+
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!password || !password.trim()) {
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors);
+
+    if (!Object.keys(newErrors).length) {
+      // Dispatch the login action with email and password
+      dispatch(loginInUserAsync({ email, password }));
+    }
+  };
 
   return (
     <AuthCard>
@@ -73,13 +108,25 @@ const Login = () => {
         <CenteredTypography variant="h6">
           Login to Existing User
         </CenteredTypography>
-        <Form noValidate autoComplete="off">
-          <TextField label="Email" fullWidth variant="outlined" />
+        <Form onSubmit={handleSubmit}>
+          <TextField
+            label="Email"
+            fullWidth
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={Boolean(errors.email)}
+            helperText={errors.email}
+          />
           <TextField
             label="Password"
             fullWidth
             variant="outlined"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            error={Boolean(errors.password)}
+            helperText={errors.password}
           />
           <FlexContainer>
             <FormControlLabel
@@ -88,7 +135,7 @@ const Login = () => {
             />
             <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
           </FlexContainer>
-          <Button variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
             Login
           </Button>
           <Typography variant="body2" color="textSecondary">
