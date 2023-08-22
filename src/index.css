@@ -1,7 +1,8 @@
 :root {
   --main-bg-color: "red";
   --text-color: "black";
-  --border-color: "gray"
+  --border-color: "gray";
+  --primary-color: "#1A97D4"
 }
 
 body {
