@@ -1,6 +1,18 @@
 .headerWrapper {
   background-color: var(--main-bg-color);
-  height: 100px;
+  height: 103px;
   width: 100%;
   border: 1px solid red
+}
+
+.headerInnerContainer {
+  width: 70%;
+  margin: auto;
+  border: 1px solid red
+}
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
