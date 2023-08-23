@@ -2,11 +2,11 @@
   --main-bg-color: white;
   --text-black: #5C6366;
   --text-white: white;
+  --text-light: #A1ADB2;
   --border-color: #E1EDF2;
   --primary-color: #1A97D4;
   --font-family: Montserrat;
   --font-weight: 500;
-
 }
 
 body {
