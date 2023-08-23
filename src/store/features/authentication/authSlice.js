@@ -8,6 +8,7 @@ const AUTH_CONSTANT = {
 const initialState = {
   user: null,
   isLoggedIn: false,
+  message: "",
 };
 
 // Async thunk to Sign in
@@ -16,6 +17,7 @@ export const loginInUserAsync = createAsyncThunk(
   async ({ email, password }) => {
     const response = await api.loginInUserAPI({ email, password });
     console.log(response);
+    return response;
   }
 );
 
@@ -31,6 +33,12 @@ const authSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginInUserAsync.fulfilled, (state, action) => {
+      state.isLoggedIn = action.payload.status;
+      state.message = action.payload.message;
+    });
   },
 });
 

@@ -16,6 +16,7 @@ import {
 } from "../store/features/authentication/authSlice";
 import { Link } from "react-router-dom";
 import { validateEmail } from "../utils/helpers";
+import OTPValidationModal from "../components/Modal/OTPValidationModal";
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -76,9 +77,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
-  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [otpModalOpen, setOTPModalOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic form validation
@@ -97,7 +98,11 @@ const Login = () => {
 
     if (!Object.keys(newErrors).length) {
       // Dispatch the login action with email and password
-      dispatch(loginInUserAsync({ email, password }));
+      const resultAction = await dispatch(
+        loginInUserAsync({ email, password })
+      );
+      setOTPModalOpen(resultAction.payload?.status);
+      console.log("resultAction", resultAction);
     }
   };
 
@@ -143,6 +148,13 @@ const Login = () => {
           </Typography>
         </Form>
       </CardContent>
+      {otpModalOpen && (
+        <OTPValidationModal
+          open={otpModalOpen}
+          onClose={() => setOTPModalOpen(false)}
+          onValidate={(val) => console.log("otp", val)}
+        />
+      )}
     </AuthCard>
   );
 };
