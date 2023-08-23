@@ -28,27 +28,27 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
     >
       <div
         style={{
-          width: 300,
-          padding: 20,
+          width: 400, // Increase the width
+          padding: 24, // Increase the padding
           backgroundColor: "#fff",
           borderRadius: 5,
         }}
       >
-        <Typography variant="h6" gutterBottom align="center" style={{}}>
+        <Typography variant="h6" gutterBottom align="center">
           Verify Code
         </Typography>
         <Typography
           variant="body2"
           align="center"
-          style={{ marginTop: 8, lineHeight: 1.5 }}
+          style={{ marginTop: 12, lineHeight: 1.5 }}
         >
           We sent an OTP code on your Email.
         </Typography>
         <Grid
           container
-          spacing={1}
+          spacing={2}
           justifyContent="center"
-          style={{ marginTop: 16 }}
+          style={{ marginTop: 20 }}
         >
           {otpDigits.map((digit, index) => (
             <Grid item xs={2} key={index}>
@@ -58,7 +58,7 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
                 onChange={(e) => handleDigitChange(index, e.target.value)}
                 inputProps={{
                   maxLength: 1,
-                  style: { textAlign: "center", lineHeight: 2 },
+                  style: { textAlign: "center", lineHeight: 2, fontSize: 20 }, // Increase the font size
                 }}
               />
             </Grid>
@@ -68,7 +68,8 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
           variant="contained"
           color="primary"
           fullWidth
-          style={{ marginTop: 16 }}
+          style={{ marginTop: 24 }} // Increase the margin
+          onClick={handleValidate} // Add onClick handler
         >
           Validate
         </Button>

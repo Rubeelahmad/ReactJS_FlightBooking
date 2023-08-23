@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../utils/api";
 const AUTH_CONSTANT = {
   signInUser: "signInUser",
+  registerUser: "registerUser",
 };
 
 const initialState = {
@@ -16,6 +17,17 @@ export const loginInUserAsync = createAsyncThunk(
   AUTH_CONSTANT.signInUser,
   async ({ email, password }) => {
     const response = await api.loginInUserAPI({ email, password });
+    console.log(response);
+    return response;
+  }
+);
+export const registerUserAsync = createAsyncThunk(
+  AUTH_CONSTANT.registerUser,
+  async (params) => {
+    const fullName = params.fullName.split(" ");
+    const firstName = fullName[0];
+    const lastName = fullName[1];
+    const response = await api.registerUser({ ...params, firstName, lastName });
     console.log(response);
     return response;
   }

@@ -7,4 +7,9 @@ const loginInUserAPI = async (params) => {
   return response.data;
 };
 
-export default { loginInUserAPI };
+const registerUser = async (params) => {
+  const response = await axios.post(apiUrl + "api/register", params);
+  console.log("API Response:", response.data);
+  return response.data;
+};
+export default { loginInUserAPI, registerUser };

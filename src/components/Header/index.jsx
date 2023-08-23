@@ -11,7 +11,7 @@ const Header = () => {
       <div className="headerInnerContainer">
         <div direction={"row"} className="header-left">
           {PublicRoutes.map(({ label }) => (
-            <span>{label}</span>
+            <span key={label}>{label}</span>
           ))}
         </div>
         <div className="header-right">
