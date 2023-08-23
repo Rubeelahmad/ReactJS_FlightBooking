@@ -10,14 +10,19 @@ import {
   Checkbox,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import {
-  login,
-  loginInUserAsync,
-} from "../store/features/authentication/authSlice";
+import { loginInUserAsync } from "../../store/features/authentication/authSlice";
 import { Link } from "react-router-dom";
-import { validateEmail } from "../utils/helpers";
-import OTPValidationModal from "../components/Modal/OTPValidationModal";
-import { showAlertMessage } from "../store/features/generalSlice/alertSlice";
+import OTPValidationModal from "../../components/Modal/OTPValidationModal";
+import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
+import { validateEmail } from "../../utils/helpers";
+import { ICONS } from "../../assets/icons";
+
+const FormContainer = styled(Card)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundImage: "url('../../assets/icons/authBg.svg')",
+}));
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -58,11 +63,6 @@ const FlexContainer = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-});
-
-const CenteredImage = styled("img")({
-  display: "block",
-  margin: "0 auto", // Center the image horizontally
 });
 
 const ForgotPasswordLink = styled(Link)({
@@ -115,55 +115,57 @@ const Login = () => {
   };
 
   return (
-    <AuthCard>
-      <CardContent>
-        <CenteredImage src="profile.png" alt="Profile" />
-        <CenteredTypography variant="h6">
-          Login to Existing User
-        </CenteredTypography>
-        <Form onSubmit={handleSubmit}>
-          <TextField
-            label="Email"
-            fullWidth
-            variant="outlined"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            error={Boolean(errors.email)}
-            helperText={errors.email}
-          />
-          <TextField
-            label="Password"
-            fullWidth
-            variant="outlined"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            error={Boolean(errors.password)}
-            helperText={errors.password}
-          />
-          <FlexContainer>
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Remember Login Info"
+    <FormContainer>
+      <AuthCard>
+        <CardContent>
+          <center>{ICONS.loginProfile}</center>
+          <CenteredTypography variant="h6" color={"var(--primary-color)"}>
+            Login to Existing User
+          </CenteredTypography>
+          <Form onSubmit={handleSubmit}>
+            <TextField
+              label="Email"
+              fullWidth
+              variant="outlined"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={Boolean(errors.email)}
+              helperText={errors.email}
             />
-            <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
-          </FlexContainer>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
-          </Button>
-          <Typography variant="body2" color="textSecondary">
-            Don’t have an account? <Link to="/register">Create account</Link>
-          </Typography>
-        </Form>
-      </CardContent>
-      {otpModalOpen && (
-        <OTPValidationModal
-          open={otpModalOpen}
-          onClose={() => setOTPModalOpen(false)}
-          onValidate={(val) => console.log("otp", val)}
-        />
-      )}
-    </AuthCard>
+            <TextField
+              label="Password"
+              fullWidth
+              variant="outlined"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={Boolean(errors.password)}
+              helperText={errors.password}
+            />
+            <FlexContainer>
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Remember Login Info"
+              />
+              <ForgotPasswordLink href="#">Forgot password?</ForgotPasswordLink>
+            </FlexContainer>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Login
+            </Button>
+            <Typography variant="body2" color="textSecondary">
+              Don’t have an account? <Link to="/register">Create account</Link>
+            </Typography>
+          </Form>
+        </CardContent>
+        {otpModalOpen && (
+          <OTPValidationModal
+            open={otpModalOpen}
+            onClose={() => setOTPModalOpen(false)}
+            onValidate={(val) => console.log("otp", val)}
+          />
+        )}
+      </AuthCard>
+    </FormContainer>
   );
 };
 

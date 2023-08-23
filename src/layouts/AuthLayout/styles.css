@@ -1,9 +1,9 @@
 .auth-layout {
-  background-image: url("../../assets/icons/authBg.svg");
-  background-size: cover;
-  height: 100vh;
+    background-size: cover;
+    height: 100vh;
 }
 
 .auth-main {
-  min-height: 65%;
+    min-height: 100%;
+    width: 100%;
 }

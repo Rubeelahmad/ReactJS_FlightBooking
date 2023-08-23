@@ -2,11 +2,11 @@
   --main-bg-color: white;
   --text-black: #5C6366;
   --text-white: white;
+  --text-light: #A1ADB2;
   --border-color: #E1EDF2;
   --primary-color: #1A97D4;
   --font-family: Montserrat;
   --font-weight: 500;
-
 }
 
 body {
@@ -16,6 +16,17 @@ body {
   color: var(--text-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 code {
