@@ -11,6 +11,7 @@ import anyQuestionBg from "./anyQuestionBg.svg";
 import send from "./send.svg";
 import loginProfile from "./loginProfile.svg";
 import homePageMainBanner from "./homePageMainBanner.svg";
+import flightJourney from "./flightJourney.svg";
 
 export const ICONS = {
   profileIcon: <img src={profileIcon} alt="profileIcon" />,
@@ -26,4 +27,5 @@ export const ICONS = {
   send: <img src={send} alt="profileIcon" />,
   loginProfile: <img src={loginProfile} alt="profileIcon" />,
   homePageMainBanner: <img src={homePageMainBanner} alt="profileIcon" />,
+  flightJourney: <img src={flightJourney} alt="profileIcon" />,
 };
