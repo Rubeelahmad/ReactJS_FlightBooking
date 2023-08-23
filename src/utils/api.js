@@ -2,8 +2,6 @@ import axios from "axios";
 import qs from "qs";
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
 console.log("REACT_APP_API_URL", apiUrl);
 const loginInUserAPI = async (params) => {
   const response = await axios.post(apiUrl + "api/login", params);
@@ -21,7 +19,7 @@ const registerUser = async (params) => {
   return response.data;
 };
 
-const fetchFlights = async () => {
+const fetchFlights = async (data) => {
   const path = "api/flights_search";
   const params = {
     journeyType: "OneWay",
@@ -37,7 +35,7 @@ const fetchFlights = async () => {
     const queryString = qs.stringify(params, { indices: false });
     const urlWithParams = `${apiUrl + path}?${queryString}`;
 
-    const response = await axios.get(urlWithParams);
+    const response = await axios.post(urlWithParams);
     console.log("API Response:", response.data);
     // Handle the API response here
   } catch (error) {

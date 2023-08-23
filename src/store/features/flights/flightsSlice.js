@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../../../utils/api";
 const filghtsConstant = {
   filghts: "filghts",
   availabelFlights: "availabelFlights",
@@ -6,8 +7,8 @@ const filghtsConstant = {
 
 export const getAvailableFightsAsync = createAsyncThunk(
   filghtsConstant.availabelFlights,
-  async ({ email, password }) => {
-    const response = await api.loginInUserAPI({ email, password });
+  async (params) => {
+    const response = await api.fetchFlights(params);
     console.log(response);
     return response;
   }

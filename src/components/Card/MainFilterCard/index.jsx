@@ -19,10 +19,19 @@ import {
 } from "@mui/material";
 import { ICONS } from "../../../assets/icons";
 import "./styles.css";
+import { useSelector, useDispatch } from "react-redux";
+import { showAlertMessage } from "../../../store/features/generalSlice/alertSlice";
+import { getAvailableFightsAsync } from "../../../store/features/flights/flightsSlice";
 
+const flightTypes = [
+  { value: "First", label: "First" },
+  { value: "Business", label: "Business" },
+  { value: "Economy", label: "Economy" },
+  { value: "PremiumEconomy", label: "PremiumEconomy" },
+];
 const MainFilterCard = () => {
   const [activeTab, setActiveTab] = useState(0);
-
+  const dispatch = useDispatch();
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
@@ -32,15 +41,52 @@ const MainFilterCard = () => {
     const [flightType, setFlightType] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
+    const [airportOriginCode, setAirportOriginCode] = useState("");
+    const [airportDestinationCode, setAirportDestinationCode] = useState("");
     const [adults, setAdults] = useState(0);
     const [children, setChildren] = useState(0);
     const [infants, setInfants] = useState(0);
-    const flightTypes = [
-      { value: "First", label: "First" },
-      { value: "Business", label: "Business" },
-      { value: "Economy", label: "Economy" },
-      { value: "PremiumEconomy", label: "PremiumEconomy" },
-    ];
+    const [errors, setErrors] = useState({
+      tripType: "",
+      flightType: "",
+      departureDate: "",
+      returnDate: "",
+      airportOriginCode: "",
+      airportDestinationCode: "",
+    });
+
+    const validateForm = () => {
+      const newErrors = {
+        tripType: tripType ? "" : "tripType is required",
+        flightType: flightType ? "" : "flightType is required",
+        departureDate: departureDate ? "" : "Departure Date is required",
+        returnDate:
+          returnDate || tripType === "OneWay" ? "" : "Return Date is required",
+        airportOriginCode: airportOriginCode ? "" : "this input is required",
+        airportDestinationCode: airportDestinationCode
+          ? ""
+          : "this input is required",
+      };
+      setErrors(newErrors);
+      return Object.values(newErrors).every((error) => error === "");
+    };
+
+    const handleSearch = async (event) => {
+      if (validateForm()) {
+        const params = {
+          journeyType: tripType,
+          class: flightType,
+          departureDate,
+          returnDate,
+          airportOriginCode,
+          airportDestinationCode,
+          adults,
+          children,
+          infants,
+        };
+        const resultAction = await dispatch(getAvailableFightsAsync(params));
+      }
+    };
 
     const handleTravelerInput = (event) => {
       const inputText = event.target.value;
@@ -83,7 +129,7 @@ const MainFilterCard = () => {
             placeholder="Select Flight Type"
           >
             <MenuItem disabled value="">
-              <em>Select Flight Type</em>
+              <p>Select Flight Type</p>
             </MenuItem>
             {flightTypes.map((item) => (
               <MenuItem key={item.value} value={item.value}>
@@ -102,20 +148,11 @@ const MainFilterCard = () => {
               style={{ margin: "4px" }}
             />
             <Chip
-              label="Return Trip"
+              label="Round Trip"
               clickable
               color={tripType === "Return" ? "primary" : "default"}
               onClick={() =>
                 handleOptionChange({ target: { value: "Return" } })
-              }
-              style={{ margin: "4px" }}
-            />
-            <Chip
-              label="Circle Trip"
-              clickable
-              color={tripType === "Circle" ? "primary" : "default"}
-              onClick={() =>
-                handleOptionChange({ target: { value: "Circle" } })
               }
               style={{ margin: "4px" }}
             />
@@ -131,6 +168,9 @@ const MainFilterCard = () => {
               variant="standard"
               placeholder="Dubai(DXB)"
               className="borderless-input"
+              onChange={(e) => setAirportOriginCode(e.target.value)}
+              error={Boolean(errors.airportOriginCode)}
+              helperText={errors.airportOriginCode}
             />
             <TextField
               label="Flying To"
@@ -140,6 +180,9 @@ const MainFilterCard = () => {
               variant="standard"
               placeholder="Sharjah(SHJ)"
               className="borderless-input"
+              onChange={(e) => setAirportDestinationCode(e.target.value)}
+              error={Boolean(errors.airportDestinationCode)}
+              helperText={errors.airportDestinationCode}
             />
             <Divider orientation="vertical" variant="middle" flexItem />
             <TextField
@@ -155,21 +198,33 @@ const MainFilterCard = () => {
               InputProps={{
                 startAdornment: ICONS.profileIcon,
               }}
-            />
-            <TextField
-              label="Return"
-              type="date"
-              placeholder="06 May 2023"
-              className="borderless-input"
-              value={returnDate}
-              onChange={handleReturnDateChange}
-              InputLabelProps={{
-                shrink: true,
+              inputProps={{
+                min: new Date().toISOString().split("T")[0], // Set the minimum date to today
               }}
-              InputProps={{
-                startAdornment: ICONS.profileIcon,
-              }}
+              error={Boolean(errors.departureDate)}
+              helperText={errors.departureDate}
             />
+            {tripType === "Return" && (
+              <TextField
+                label="Return"
+                type="date"
+                placeholder="06 May 2023"
+                className="borderless-input"
+                value={returnDate}
+                onChange={handleReturnDateChange}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  startAdornment: ICONS.profileIcon,
+                }}
+                inputProps={{
+                  min: new Date().toISOString().split("T")[0], // Set the minimum date to today
+                }}
+                error={Boolean(errors.returnDate)}
+                helperText={errors.returnDate}
+              />
+            )}
             <Divider orientation="vertical" variant="middle" flexItem />
             <TextField
               label="Travelers"
@@ -183,7 +238,11 @@ const MainFilterCard = () => {
             />
           </div>
 
-          <Button variant="contained" endIcon={ICONS.profileIcon}>
+          <Button
+            variant="contained"
+            endIcon={ICONS.profileIcon}
+            onClick={handleSearch}
+          >
             Search
           </Button>
         </div>
@@ -200,8 +259,8 @@ const MainFilterCard = () => {
       </Tabs>
       <CardContent>
         {activeTab === 0 && <FlightTab />}
-        {activeTab === 1 && <div>Content for Hotels</div>}
-        {activeTab === 2 && <div>Content for Car Rental</div>}
+        {activeTab === 1 && <FlightTab />}
+        {activeTab === 2 && <FlightTab />}
       </CardContent>
     </Card>
   );
