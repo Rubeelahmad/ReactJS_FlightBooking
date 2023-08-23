@@ -8,3 +8,5 @@ export const authInLocalStorage = {
   get: () => localStorage.getItem("authToken") || null,
   clear: () => localStorage.clear(),
 };
+
+

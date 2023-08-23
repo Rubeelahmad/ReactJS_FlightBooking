@@ -15,6 +15,7 @@ import {
   Divider,
   Chip,
   Button,
+  Typography,
 } from "@mui/material";
 import { ICONS } from "../../../assets/icons";
 import "./styles.css";
@@ -27,14 +28,19 @@ const MainFilterCard = () => {
   };
 
   const FlightTab = () => {
-    const [tripType, setTripType] = useState("oneWay");
-    const [flightType, setFlightType] = useState("business");
+    const [tripType, setTripType] = useState("");
+    const [flightType, setFlightType] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
-    const [adults, setAdults] = useState(2);
-    const [children, setChildren] = useState(1);
+    const [adults, setAdults] = useState(0);
+    const [children, setChildren] = useState(0);
     const [infants, setInfants] = useState(0);
-    const flightTypes = [{ value: "business", label: "Business" }];
+    const flightTypes = [
+      { value: "First", label: "First" },
+      { value: "Business", label: "Business" },
+      { value: "Economy", label: "Economy" },
+      { value: "PremiumEconomy", label: "PremiumEconomy" },
+    ];
 
     const handleTravelerInput = (event) => {
       const inputText = event.target.value;
@@ -69,7 +75,16 @@ const MainFilterCard = () => {
     return (
       <>
         <div className="flightTabContainer">
-          <Select value={flightType} onChange={handleChange}>
+          <Select
+            value={flightType}
+            onChange={handleChange}
+            style={{ minWidth: 150 }}
+            displayEmpty
+            placeholder="Select Flight Type"
+          >
+            <MenuItem disabled value="">
+              <em>Select Flight Type</em>
+            </MenuItem>
             {flightTypes.map((item) => (
               <MenuItem key={item.value} value={item.value}>
                 {item.label}
@@ -80,18 +95,27 @@ const MainFilterCard = () => {
             <Chip
               label="One Way"
               clickable
-              color={tripType === "oneWay" ? "primary" : "default"}
+              color={tripType === "OneWay" ? "primary" : "default"}
               onClick={() =>
-                handleOptionChange({ target: { value: "oneWay" } })
+                handleOptionChange({ target: { value: "OneWay" } })
               }
               style={{ margin: "4px" }}
             />
             <Chip
-              label="Round Trip"
+              label="Return Trip"
               clickable
-              color={tripType === "roundTrip" ? "primary" : "default"}
+              color={tripType === "Return" ? "primary" : "default"}
               onClick={() =>
-                handleOptionChange({ target: { value: "roundTrip" } })
+                handleOptionChange({ target: { value: "Return" } })
+              }
+              style={{ margin: "4px" }}
+            />
+            <Chip
+              label="Circle Trip"
+              clickable
+              color={tripType === "Circle" ? "primary" : "default"}
+              onClick={() =>
+                handleOptionChange({ target: { value: "Circle" } })
               }
               style={{ margin: "4px" }}
             />
