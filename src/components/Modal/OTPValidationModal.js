@@ -1,19 +1,42 @@
 import React, { useState } from "react";
 import { Modal, Typography, Button, Grid, TextField } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { otpValidateUserAsync } from "../../store/features/authentication/authSlice";
+import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
+import { useNavigate } from "react-router-dom";
 
-const OTPValidationModal = ({ open, onClose, onValidate }) => {
+const OTPValidationModal = ({ open, onClose }) => {
   const [otpDigits, setOtpDigits] = useState(["", "", "", "", "", ""]);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDigitChange = (index, value) => {
+    console.log("input", value);
     const newOtpDigits = [...otpDigits];
     newOtpDigits[index] = value;
     setOtpDigits(newOtpDigits);
+    setError("");
   };
 
-  const handleValidate = () => {
-    const otp = otpDigits.join("");
-    onValidate(otp);
-    onClose();
+  const handleValidate = async () => {
+    const otpCode = otpDigits.join("");
+    if (otpCode.length !== 6) {
+      setError("Please enter a valid 6-digit OTP");
+      return;
+    }
+    const resultAction = await dispatch(otpValidateUserAsync(otpCode));
+    dispatch(
+      showAlertMessage({
+        open: true,
+        message: resultAction.payload.message,
+        severity: resultAction.payload.status ? "success" : "error",
+      })
+    );
+    if (resultAction.payload.status) {
+      navigate("/");
+      onClose();
+    }
   };
 
   return (
@@ -28,19 +51,19 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
     >
       <div
         style={{
-          width: 400, // Increase the width
-          padding: 24, // Increase the padding
+          width: 600, // Increase the width of the Modal
+          padding: 40, // Increase the padding of the Modal content
           backgroundColor: "#fff",
-          borderRadius: 5,
+          borderRadius: 10,
         }}
       >
-        <Typography variant="h6" gutterBottom align="center">
+        <Typography variant="h5" gutterBottom align="center">
           Verify Code
         </Typography>
         <Typography
-          variant="body2"
+          variant="body1"
           align="center"
-          style={{ marginTop: 12, lineHeight: 1.5 }}
+          style={{ marginTop: 20, lineHeight: 1.5 }}
         >
           We sent an OTP code on your Email.
         </Typography>
@@ -48,7 +71,7 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
           container
           spacing={2}
           justifyContent="center"
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 30 }}
         >
           {otpDigits.map((digit, index) => (
             <Grid item xs={2} key={index}>
@@ -58,7 +81,7 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
                 onChange={(e) => handleDigitChange(index, e.target.value)}
                 inputProps={{
                   maxLength: 1,
-                  style: { textAlign: "center", lineHeight: 2, fontSize: 20 }, // Increase the font size
+                  style: { textAlign: "center", lineHeight: 2, fontSize: 24 },
                 }}
               />
             </Grid>
@@ -68,8 +91,8 @@ const OTPValidationModal = ({ open, onClose, onValidate }) => {
           variant="contained"
           color="primary"
           fullWidth
-          style={{ marginTop: 24 }} // Increase the margin
-          onClick={handleValidate} // Add onClick handler
+          style={{ marginTop: 40 }}
+          onClick={handleValidate}
         >
           Validate
         </Button>

@@ -6,10 +6,15 @@ const loginInUserAPI = async (params) => {
   console.log("API Response:", response.data);
   return response.data;
 };
-
+const otpCodeValidateUserAPI = async (params) => {
+  const response = await axios.post(apiUrl + "api/loginOtp", params);
+  console.log("API Response:", response.data);
+  return response.data;
+};
 const registerUser = async (params) => {
   const response = await axios.post(apiUrl + "api/register", params);
   console.log("API Response:", response.data);
   return response.data;
 };
-export default { loginInUserAPI, registerUser };
+
+export default { loginInUserAPI, registerUser, otpCodeValidateUserAPI };

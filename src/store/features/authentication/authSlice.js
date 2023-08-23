@@ -1,15 +1,16 @@
 // src/slices/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../utils/api";
+import { authInLocalStorage } from "../../../utils/helpers";
 const AUTH_CONSTANT = {
   signInUser: "signInUser",
   registerUser: "registerUser",
+  otpValidation: "otpValidation",
 };
 
 const initialState = {
   user: null,
   isLoggedIn: false,
-  message: "",
 };
 
 // Async thunk to Sign in
@@ -18,6 +19,24 @@ export const loginInUserAsync = createAsyncThunk(
   async ({ email, password }) => {
     const response = await api.loginInUserAPI({ email, password });
     console.log(response);
+    return response;
+  }
+);
+export const otpValidateUserAsync = createAsyncThunk(
+  AUTH_CONSTANT.otpValidation,
+  async (otpCode, { getState }) => {
+    const user = getState().auth.user;
+    const params = {
+      user_id: user.user_id,
+      otp: parseInt(otpCode),
+      app: "mobile",
+      device_type: "ios",
+    };
+    const response = await api.otpCodeValidateUserAPI(params);
+    console.log(response);
+    if (response.data?.token) {
+      authInLocalStorage.get(response.data?.token);
+    }
     return response;
   }
 );
@@ -47,10 +66,13 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginInUserAsync.fulfilled, (state, action) => {
-      state.isLoggedIn = action.payload.status;
-      state.message = action.payload.message;
-    });
+    builder
+      .addCase(loginInUserAsync.fulfilled, (state, action) => {
+        state.user = action.payload.data;
+      })
+      .addCase(otpValidateUserAsync.fulfilled, (state, action) => {
+        state.isLoggedIn = action.payload.status;
+      });
   },
 });
 

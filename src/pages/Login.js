@@ -17,6 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import { validateEmail } from "../utils/helpers";
 import OTPValidationModal from "../components/Modal/OTPValidationModal";
+import { showAlertMessage } from "../store/features/generalSlice/alertSlice";
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -102,6 +103,13 @@ const Login = () => {
         loginInUserAsync({ email, password })
       );
       setOTPModalOpen(resultAction.payload?.status);
+      dispatch(
+        showAlertMessage({
+          open: true,
+          message: resultAction.payload.message,
+          severity: resultAction.payload.status ? "success" : "error",
+        })
+      );
       console.log("resultAction", resultAction);
     }
   };
