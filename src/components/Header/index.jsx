@@ -3,26 +3,48 @@ import "./styles.css";
 import PublicRoutes from "../../routes/PublicRoutes";
 import { Chip } from "@mui/material";
 import { ICONS } from "../../assets/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ isTransparent = false }) => {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
-    <div className="headerWrapper">
+    <div
+      className="headerWrapper"
+      style={{
+        backgroundColor: isTransparent ? "transparent" : "rgb(255 255 255/1)",
+      }}
+    >
       <div className="headerInnerContainer">
         <div direction={"row"} className="header-left">
           {PublicRoutes.map(({ label }) => (
-            <span>{label}</span>
+            <span className="tabLinks">{label}</span>
           ))}
         </div>
         <div className="header-right">
-          <Link to={"/register"}>Register</Link>
+          <Link to={"/register"}>
+            {location.pathname === "/register" ? (
+              <Chip
+                icon={ICONS.profileIcon}
+                label="Register"
+                variant="outlined"
+                className="loginChip"
+              />
+            ) : (
+              "Register"
+            )}
+          </Link>
           <Link to={"/login"}>
-            <Chip
-              icon={ICONS.profileIcon}
-              label="Login"
-              variant="outlined"
-              className="loginChip"
-            />
+            {location.pathname === "/login" ? (
+              <Chip
+                icon={ICONS.profileIcon}
+                label="Login"
+                variant="outlined"
+                className="loginChip"
+              />
+            ) : (
+              "login"
+            )}
           </Link>
         </div>
       </div>

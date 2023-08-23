@@ -1,6 +1,7 @@
 :root {
   --main-bg-color: white;
-  --text-color: #5C6366;
+  --text-black: #5C6366;
+  --text-white: white;
   --border-color: #E1EDF2;
   --primary-color: #1A97D4;
   --font-family: Montserrat;
@@ -12,7 +13,7 @@ body {
   margin: 0;
   font-family: var(--font-family);
   font-weight: var(--font-weight);
-  color: var(--text-color);
+  color: var(--text-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -6,6 +6,9 @@ import twitterFooterIcon from "./twitterFooterIcon.svg";
 import instaFooterIcon from "./instaFooterIcon.svg";
 import tiktokFooterIcon from "./tiktokFooterIcon.svg";
 import telegramFooterIcon from "./telegramFooterIcon.svg";
+import gradientHompageBg from "./gradientHompageBg.svg";
+import anyQuestionBg from "./anyQuestionBg.svg";
+import send from "./send.svg";
 
 export const ICONS = {
   profileIcon: <img src={profileIcon} alt="profileIcon" />,
@@ -16,4 +19,7 @@ export const ICONS = {
   instaFooterIcon: <img src={instaFooterIcon} alt="profileIcon" />,
   tiktokFooterIcon: <img src={tiktokFooterIcon} alt="profileIcon" />,
   telegramFooterIcon: <img src={telegramFooterIcon} alt="profileIcon" />,
+  gradientHompageBg: <img src={gradientHompageBg} alt="profileIcon" />,
+  anyQuestionBg: <img src={anyQuestionBg} alt="profileIcon" />,
+  send: <img src={send} alt="profileIcon" />,
 };

@@ -1,0 +1,17 @@
+.contactUsFooterWrapper {
+    background-image: url('../../assets/icons/anyQuestionBg.svg');
+    height: 137px;
+    width: 100%;
+}
+
+.contactUsFooterWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.contactUsFooterWrapperLeft {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-white);
+}
