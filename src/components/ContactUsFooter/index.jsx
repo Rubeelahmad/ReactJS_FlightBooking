@@ -15,7 +15,7 @@ const ContactUsFooter = () => {
     <div className="contactUsFooterWrapper">
       <div className="contactUsFooterContainer">
         <div className="contactUsFooterWrapperLeft">
-          <h3>Have any question? Let us help you!</h3>
+          <h2>Have any question? Let us help you!</h2>
           <span>Lörem ipsum krorat ekosiv och sende anim</span>
         </div>
         <Input

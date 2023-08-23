@@ -9,6 +9,7 @@ import telegramFooterIcon from "./telegramFooterIcon.svg";
 import gradientHompageBg from "./gradientHompageBg.svg";
 import anyQuestionBg from "./anyQuestionBg.svg";
 import send from "./send.svg";
+import loginProfile from "./loginProfile.svg";
 
 export const ICONS = {
   profileIcon: <img src={profileIcon} alt="profileIcon" />,
@@ -22,4 +23,5 @@ export const ICONS = {
   gradientHompageBg: <img src={gradientHompageBg} alt="profileIcon" />,
   anyQuestionBg: <img src={anyQuestionBg} alt="profileIcon" />,
   send: <img src={send} alt="profileIcon" />,
+  loginProfile: <img src={loginProfile} alt="profileIcon" />,
 };

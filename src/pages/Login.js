@@ -17,6 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import { validateEmail } from "../utils/helpers";
 import OTPValidationModal from "../components/Modal/OTPValidationModal";
+import { ICONS } from "../assets/icons";
 
 const AuthCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -57,11 +58,6 @@ const FlexContainer = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-});
-
-const CenteredImage = styled("img")({
-  display: "block",
-  margin: "0 auto", // Center the image horizontally
 });
 
 const ForgotPasswordLink = styled(Link)({
@@ -109,8 +105,8 @@ const Login = () => {
   return (
     <AuthCard>
       <CardContent>
-        <CenteredImage src="profile.png" alt="Profile" />
-        <CenteredTypography variant="h6">
+        <center>{ICONS.loginProfile}</center>
+        <CenteredTypography variant="h6" color={"var(--primary-color)"}>
           Login to Existing User
         </CenteredTypography>
         <Form onSubmit={handleSubmit}>

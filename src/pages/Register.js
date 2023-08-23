@@ -122,7 +122,7 @@ const Register = () => {
   return (
     <AuthCard>
       <CardContent>
-        <CenteredTypography variant="h6">
+        <CenteredTypography variant="h6" color={"var(--primary-color)"}>
           Register for New User
         </CenteredTypography>
         <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
