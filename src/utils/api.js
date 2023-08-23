@@ -1,5 +1,7 @@
 import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
+import qs from "qs";
+
 console.log("REACT_APP_API_URL", apiUrl);
 const loginInUserAPI = async (params) => {
   const response = await axios.post(apiUrl + "api/login", params);
@@ -17,4 +19,34 @@ const registerUser = async (params) => {
   return response.data;
 };
 
-export default { loginInUserAPI, registerUser, otpCodeValidateUserAPI };
+const fetchFlights = async () => {
+  const path = "api/flights_search";
+  const params = {
+    journeyType: "OneWay",
+    adults: 2,
+    childs: 1,
+    infants: 0,
+    class: "Economy",
+    "OriginDestinationInfo[0][airportOriginCode]": "LHE",
+    "OriginDestinationInfo[0][airportDestinationCode]": "DWC",
+    "OriginDestinationInfo[0][departureDate]": "2023-08-31",
+  };
+  try {
+    const queryString = qs.stringify(params, { indices: false });
+    const urlWithParams = `${apiUrl + path}?${queryString}`;
+
+    const response = await axios.get(urlWithParams);
+    console.log("API Response:", response.data);
+    // Handle the API response here
+  } catch (error) {
+    console.error("API Error:", error);
+    // Handle errors here
+  }
+};
+
+export default {
+  loginInUserAPI,
+  registerUser,
+  otpCodeValidateUserAPI,
+  fetchFlights,
+};
