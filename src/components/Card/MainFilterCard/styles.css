@@ -1,0 +1,22 @@
+.mainFilterCard {
+    width: 80%;
+    margin-inline: auto;
+}
+
+.flightTabContainer {
+    display: flex;
+    align-items: center;
+}
+
+.flight-filterContainer {
+    display: flex;
+}
+
+.borderless-input .MuiInputBase-root::before,
+.borderless-input .MuiOutlinedInput-notchedOutline {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding-left: 8px;
+    /* Adjust as needed */
+}
