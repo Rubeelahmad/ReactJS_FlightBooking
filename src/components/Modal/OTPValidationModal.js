@@ -71,7 +71,7 @@ const OTPValidationModal = ({ open, onClose }) => {
           container
           spacing={2}
           justifyContent="center"
-          style={{ marginTop: 30 }}
+          style={{ marginTop: 40 }}
         >
           {otpDigits.map((digit, index) => (
             <Grid item xs={2} key={index}>
@@ -87,11 +87,21 @@ const OTPValidationModal = ({ open, onClose }) => {
             </Grid>
           ))}
         </Grid>
+        {error && (
+          <Typography
+            style={{ marginTop: 20, lineHeight: 1.5 }}
+            variant="body2"
+            color="error"
+            align="left"
+          >
+            {error}
+          </Typography>
+        )}
         <Button
           variant="contained"
           color="primary"
           fullWidth
-          style={{ marginTop: 40 }}
+          style={{ marginTop: 30 }}
           onClick={handleValidate}
         >
           Validate
