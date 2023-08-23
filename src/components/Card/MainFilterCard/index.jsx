@@ -122,64 +122,66 @@ const MainFilterCard = () => {
           </div>
         </div>
         <div className="flight-filterContainer">
-          <TextField
-            label="Flying From"
-            InputProps={{
-              startAdornment: ICONS.profileIcon,
-            }}
-            variant="standard"
-            placeholder="Dubai(DXB)"
-            className="borderless-input"
-          />
-          <TextField
-            label="Flying To"
-            InputProps={{
-              startAdornment: ICONS.profileIcon,
-            }}
-            variant="standard"
-            placeholder="Sharjah(SHJ)"
-            className="borderless-input"
-          />
-          <Divider orientation="vertical" variant="middle" flexItem />
-          <TextField
-            label="Departure"
-            type="date"
-            placeholder="18 Apr 2023"
-            className="borderless-input"
-            value={departureDate}
-            onChange={handleDepartureDateChange}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              startAdornment: ICONS.profileIcon,
-            }}
-          />
-          <TextField
-            label="Return"
-            type="date"
-            placeholder="06 May 2023"
-            className="borderless-input"
-            value={returnDate}
-            onChange={handleReturnDateChange}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              startAdornment: ICONS.profileIcon,
-            }}
-          />
-          <Divider orientation="vertical" variant="middle" flexItem />
-          <TextField
-            label="Travelers"
-            InputProps={{
-              startAdornment: ICONS.profileIcon,
-            }}
-            variant="standard"
-            placeholder="2 Adults, 1 Child, 0 Infants"
-            className="borderless-input"
-            onChange={handleTravelerInput}
-          />
+          <div className="flight-filters">
+            <TextField
+              label="Flying From"
+              InputProps={{
+                startAdornment: ICONS.profileIcon,
+              }}
+              variant="standard"
+              placeholder="Dubai(DXB)"
+              className="borderless-input"
+            />
+            <TextField
+              label="Flying To"
+              InputProps={{
+                startAdornment: ICONS.profileIcon,
+              }}
+              variant="standard"
+              placeholder="Sharjah(SHJ)"
+              className="borderless-input"
+            />
+            <Divider orientation="vertical" variant="middle" flexItem />
+            <TextField
+              label="Departure"
+              type="date"
+              placeholder="18 Apr 2023"
+              className="borderless-input"
+              value={departureDate}
+              onChange={handleDepartureDateChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                startAdornment: ICONS.profileIcon,
+              }}
+            />
+            <TextField
+              label="Return"
+              type="date"
+              placeholder="06 May 2023"
+              className="borderless-input"
+              value={returnDate}
+              onChange={handleReturnDateChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                startAdornment: ICONS.profileIcon,
+              }}
+            />
+            <Divider orientation="vertical" variant="middle" flexItem />
+            <TextField
+              label="Travelers"
+              InputProps={{
+                startAdornment: ICONS.profileIcon,
+              }}
+              variant="standard"
+              placeholder="2 Adults, 1 Child, 0 Infants"
+              className="borderless-input"
+              onChange={handleTravelerInput}
+            />
+          </div>
 
           <Button variant="contained" endIcon={ICONS.profileIcon}>
             Search

@@ -10,6 +10,11 @@
 
 .flight-filterContainer {
     display: flex;
+    justify-content: space-between;
+}
+
+.flight-filters {
+    display: flex;
 }
 
 .borderless-input .MuiInputBase-root::before,
