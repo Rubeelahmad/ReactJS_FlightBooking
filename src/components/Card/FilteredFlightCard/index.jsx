@@ -61,7 +61,7 @@ const FilteredFlightCard = (props) => {
 
       <Divider />
       <div className="flightBottomTags">
-        <div>
+        <div className="flightBottomTags-chips">
           <Chip label="One Way" color="primary" variant="outlined" />
           <Chip label="Round Trip" color="primary" variant="outlined" />
         </div>
