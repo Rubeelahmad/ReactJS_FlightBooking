@@ -207,6 +207,7 @@ const MainFilterCard = () => {
               }}
               variant="standard"
               placeholder="Dubai(DXB)"
+              value={airportOriginCode}
               className="borderless-input"
               onChange={(e) =>
                 setAirportOriginCode(e.target.value?.toUpperCase())
@@ -219,6 +220,7 @@ const MainFilterCard = () => {
               InputProps={{
                 startAdornment: ICONS.profileIcon,
               }}
+              value={airportDestinationCode}
               variant="standard"
               placeholder="Sharjah(SHJ)"
               className="borderless-input"
