@@ -70,6 +70,7 @@ const FilteredFlightCard = (props) => {
       </div>
 
       <Divider />
+      {showDetails && <FlightDetails />}
       <div className="flightBottomTags">
         <div className="flightBottomTags-chips">
           <Chip label="One Way" color="primary" variant="outlined" />
@@ -80,13 +81,11 @@ const FilteredFlightCard = (props) => {
           onClick={() => setShowDetails(!showDetails)}
         >
           <Typography variant="p" color={"var(--primary-color)"}>
-            See Details
+            {showDetails ? "Hide" : "See"} Details
           </Typography>
-          {ICONS.chevronDown}
+          {showDetails ? ICONS.chevronUp : ICONS.chevronDown}
         </div>
       </div>
-
-      {showDetails && <FlightDetails />}
     </Card>
   );
 };

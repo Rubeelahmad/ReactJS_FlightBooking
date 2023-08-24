@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Tab, Tabs, Typography } from "@mui/material";
+import { Avatar, Divider, Tab, Tabs, Typography } from "@mui/material";
 import { ICONS } from "../../../../assets/icons";
 import "./styles.css";
 
@@ -28,6 +28,9 @@ const FlightDetails = () => {
       flightNo: "E123",
       cabin: "Economy",
       fareType: "One Way",
+      layOverTime: "2h 50m",
+      layOverAirport: "Jinnah International",
+      layOverCity: "KHI",
     },
     {
       stopDate: "2023-08-25",
@@ -67,62 +70,79 @@ const FlightDetails = () => {
       fareType,
       fromCityName,
       toCityName,
+      layOverTime,
+      layOverAirport,
+      layOverCity,
     } = props;
     return (
-      <div className="flightStopsDetails-container">
-        <div className="flightStopsDetailsTop">
-          {ICONS.calendar}
-          <div className="flightStopsDetailsTop-title">
-            <span>{stopDate}</span>
-            <span>{stopDay}</span>
-          </div>
-        </div>
-        <div className="flightStopsDetailsBody">
-          <div className="flightStopsDetailsBody-left">
-            <Avatar alt="flight" src={imageSrc} />
-            {ICONS.flightJourneyHorizontal}
-            <div className="flightStopsDetailsBody-leftJourney">
-              <div>
-                <span>
-                  <b>{departureTime}</b>
-                </span>
-                <span>
-                  <b>{fromCityName}</b>
-                </span>
-                <span>{fromAirport}</span>
-              </div>
-              <div>
-                <h4>{flightName}</h4>
-                <span>Travel Time: {travelTime}</span>
-              </div>
-              <div>
-                <span>
-                  <b>{arrivalTime}</b>
-                </span>
-                <span>
-                  <b>{toCityName}</b>
-                </span>
-                <span>{toAirport}</span>
-              </div>
+      <>
+        <div className="flightStopsDetails-container">
+          <div className="flightStopsDetailsTop">
+            {ICONS.calendar}
+            <div className="flightStopsDetailsTop-title">
+              <span>{stopDate}</span>
+              <span>{stopDay}</span>
             </div>
           </div>
-          <div className="flightStopsDetailsBody-right">
-            <h3>Flight Details</h3>
-            <p>
-              Operated By: <b>{flightName}</b>
-            </p>
-            <p>
-              Flight No: <b>{flightNo}</b>
-            </p>
-            <p>
-              Cabin: <b>{cabin}</b>
-            </p>
-            <p>
-              Fare Type: <b>{fareType}</b>
-            </p>
+          <div className="flightStopsDetailsBody">
+            <div className="flightStopsDetailsBody-left">
+              <Avatar alt="flight" src={imageSrc} />
+              {ICONS.flightJourneyVertical}
+              <div className="flightStopsDetailsBody-leftJourney">
+                <div>
+                  <span>
+                    <b>{departureTime}</b>
+                  </span>
+                  <span>
+                    <b>{fromCityName}</b>
+                  </span>
+                  <span>{fromAirport}</span>
+                  <span> ({from})</span>
+                </div>
+                <div>
+                  <h4>{flightName}</h4>
+                  <span>Travel Time: {travelTime}</span>
+                </div>
+                <div>
+                  <span>
+                    <b>{arrivalTime}</b>
+                  </span>
+                  <span>
+                    <b>{toCityName}</b>
+                  </span>
+                  <span>{toAirport}</span>
+                  <span> ({to})</span>
+                </div>
+              </div>
+            </div>
+            <div className="flightStopsDetailsBody-right">
+              <h3>Flight Details</h3>
+              <p>
+                Operated By: <b>{flightName}</b>
+              </p>
+              <p>
+                Flight No: <b>{flightNo}</b>
+              </p>
+              <p>
+                Cabin: <b>{cabin}</b>
+              </p>
+              <p>
+                Fare Type: <b>{fareType}</b>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+        {layOverTime && (
+          <div className="layOverBar">
+            {ICONS.clock}
+            <span>
+              <b>
+                {layOverTime} layover - {layOverAirport} ({layOverCity})
+              </b>
+            </span>
+          </div>
+        )}
+      </>
     );
   };
 
@@ -154,6 +174,9 @@ const FlightDetails = () => {
                   travelTime={flight.travelTime}
                   toCityName={flight.toCityName}
                   fromCityName={flight.fromCityName}
+                  layOverTime={flight.layOverTime}
+                  layOverAirport={flight.layOverAirport}
+                  layOverCity={flight.layOverCity}
                 />
               ))}
             </>
@@ -165,6 +188,7 @@ const FlightDetails = () => {
           {/* Place content for the selected tab */}
         </div>
       </div>
+      <Divider />
     </>
   );
 };

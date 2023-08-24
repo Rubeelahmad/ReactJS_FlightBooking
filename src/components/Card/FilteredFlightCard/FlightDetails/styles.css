@@ -1,6 +1,9 @@
 .flightStopsDetails-container {
     padding: 10px;
     margin-block: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 .flightStopsDetailsTop {
@@ -20,6 +23,7 @@
 .flightStopsDetailsBody-left {
     display: flex;
     align-items: center;
+    flex: 1;
 }
 
 .flightStopsDetailsBody-leftJourney {
@@ -27,4 +31,14 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+}
+
+.layOverBar {
+    display: flex;
+    align-items: center;
+    background-color: #F2FBFF;
+    height: 42px;
+    border-radius: 10px;
+    padding-inline: 10px;
+    column-gap: 5px;
 }
