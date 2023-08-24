@@ -1,3 +1,4 @@
+/* Base styles */
 .headerWrapper {
   height: 103px;
   width: 100%;
@@ -13,7 +14,7 @@
 }
 
 .headerWhite .tabLinks {
-  color: var(--text-white)
+  color: var(--text-white);
 }
 
 .tabLinks {
@@ -41,6 +42,34 @@
   border-color: var(--border-color);
 }
 
-.loginChip>span {
+.loginChip > span {
   color: var(--primary-color) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .headerWrapper {
+    padding-top: 15px; /* Added padding to the top */
+  }
+  .headerInnerContainer {
+    width: 90%;
+  }
+
+  .header-left,
+  .header-right {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 15px;
+  }
+
+  .tabLinks {
+    font-size: 14px;
+  }
+
+  .loginChip {
+    width: auto;
+    height: auto;
+    padding: 5px 15px;
+    text-align: center;
+  }
 }
