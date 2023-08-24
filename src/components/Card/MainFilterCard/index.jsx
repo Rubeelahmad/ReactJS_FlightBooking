@@ -131,6 +131,14 @@ const MainFilterCard = () => {
         if (resultAction.payload?.status) {
           navigate("/flights");
         }
+      } else {
+        dispatch(
+          showAlertMessage({
+            open: true,
+            message: "All fields must be required.",
+            severity: "error",
+          })
+        );
       }
     };
 
