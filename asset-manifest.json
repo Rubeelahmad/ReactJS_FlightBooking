@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/ReactJS_FlightBooking/static/css/main.b3e5d4c8.css",
+    "main.js": "/ReactJS_FlightBooking/static/js/main.4a9afb28.js",
+    "static/js/787.2589662e.chunk.js": "/ReactJS_FlightBooking/static/js/787.2589662e.chunk.js",
+    "static/media/homePageMainBanner.svg": "/ReactJS_FlightBooking/static/media/homePageMainBanner.aec102ef1bcc94d0e7a6.svg",
+    "static/media/authHeaderBg.svg": "/ReactJS_FlightBooking/static/media/authHeaderBg.030cefd88e99c9d22103.svg",
+    "static/media/authBg.svg": "/ReactJS_FlightBooking/static/media/authBg.8564ed1984ea131abf8d.svg",
+    "static/media/calendar.svg": "/ReactJS_FlightBooking/static/media/calendar.c6f832510561287f68e9.svg",
+    "static/media/hotel.svg": "/ReactJS_FlightBooking/static/media/hotel.365f5535a739a5b27465.svg",
+    "static/media/instaFooterIcon.svg": "/ReactJS_FlightBooking/static/media/instaFooterIcon.5374d1bf5b951ec04b30.svg",
+    "static/media/tiktokFooterIcon.svg": "/ReactJS_FlightBooking/static/media/tiktokFooterIcon.5374d1bf5b951ec04b30.svg",
+    "static/media/search.svg": "/ReactJS_FlightBooking/static/media/search.ae95b1549bf185900399.svg",
+    "static/media/flightJourneyVertical.svg": "/ReactJS_FlightBooking/static/media/flightJourneyVertical.11883da2fab1712f081a.svg",
+    "static/media/send.svg": "/ReactJS_FlightBooking/static/media/send.d31160953431b0955a2e.svg",
+    "static/media/flightJourney.svg": "/ReactJS_FlightBooking/static/media/flightJourney.7f6ee0759e4c363bde84.svg",
+    "static/media/car.svg": "/ReactJS_FlightBooking/static/media/car.d8c35508175ce7578b87.svg",
+    "static/media/telegramFooterIcon.svg": "/ReactJS_FlightBooking/static/media/telegramFooterIcon.ce41cdc4daaeb2eb973b.svg",
+    "static/media/loginProfile.svg": "/ReactJS_FlightBooking/static/media/loginProfile.090228b9e17c2bf446d2.svg",
+    "static/media/twitterFooterIcon.svg": "/ReactJS_FlightBooking/static/media/twitterFooterIcon.2490fd2a8e77d43361e3.svg",
+    "static/media/profile.svg": "/ReactJS_FlightBooking/static/media/profile.e1fd54d574a4f865dab2.svg",
+    "static/media/gradientHompageBg.svg": "/ReactJS_FlightBooking/static/media/gradientHompageBg.587a8c1d0da0c216415a.svg",
+    "index.html": "/ReactJS_FlightBooking/index.html",
+    "static/media/sendIconRound.svg": "/ReactJS_FlightBooking/static/media/sendIconRound.0292ad53adddc4f4ecd6.svg",
+    "static/media/flight.svg": "/ReactJS_FlightBooking/static/media/flight.89567510b08e08a6b959.svg",
+    "static/media/clock.svg": "/ReactJS_FlightBooking/static/media/clock.7f277188f9974375aee0.svg",
+    "static/media/fbFooterIcon.svg": "/ReactJS_FlightBooking/static/media/fbFooterIcon.16e64b471e3f00f5f1b8.svg",
+    "static/media/chevronDown.svg": "/ReactJS_FlightBooking/static/media/chevronDown.212d3cf5670943e15557.svg",
+    "static/media/chevronUp.svg": "/ReactJS_FlightBooking/static/media/chevronUp.87be33e890f4659538b4.svg",
+    "static/media/anyQuestionBg.svg": "/ReactJS_FlightBooking/static/media/anyQuestionBg.8f4001cd67148b155804.svg",
+    "main.b3e5d4c8.css.map": "/ReactJS_FlightBooking/static/css/main.b3e5d4c8.css.map",
+    "main.4a9afb28.js.map": "/ReactJS_FlightBooking/static/js/main.4a9afb28.js.map",
+    "787.2589662e.chunk.js.map": "/ReactJS_FlightBooking/static/js/787.2589662e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3e5d4c8.css",
+    "static/js/main.4a9afb28.js"
+  ]
+}
