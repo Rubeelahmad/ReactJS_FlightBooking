@@ -8,11 +8,11 @@ import { useLocation } from "react-router-dom";
 const AuthLayout = ({ children }) => {
   const location = useLocation();
   return (
-    <div
-      className="auth-layout"
-      style={{ backgroundImage: "url('../../assets/icons/authBg.svg')" }}
-    >
-      <Header isTransparent={location.pathname === "/"} />
+    <div className="auth-layout">
+      <Header
+        isTransparent={location.pathname === "/"}
+        lightColor={location.pathname === "/"}
+      />
       <main className="auth-main">{children}</main>
       <ContactUsFooter />
       <Footer />

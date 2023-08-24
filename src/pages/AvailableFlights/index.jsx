@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ICONS } from "../../assets/icons";
 import "./styles.css";
 import MainFilterCard from "../../components/Card/MainFilterCard";
 import FilteredFlightCard from "../../components/Card/FilteredFlightCard";

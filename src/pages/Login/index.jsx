@@ -22,7 +22,8 @@ const FormContainer = styled(Card)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundImage: "url('../../assets/icons/authBg.svg')",
+  backgroundImage: `url(${ICONS.authBg.props.src})`,
+  padding: "25px",
 }));
 
 const AuthCard = styled(Card)(({ theme }) => ({

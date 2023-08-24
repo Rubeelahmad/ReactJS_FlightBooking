@@ -10,9 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { reset as authReset } from "../../store/features/authentication/authSlice";
 import { reset as flightReset } from "../../store/features/flights/flightsSlice";
 
-const Header = ({ isTransparent = false }) => {
+const Header = ({ isTransparent = false, lightColor = false }) => {
   const location = useLocation();
-  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,7 +22,9 @@ const Header = ({ isTransparent = false }) => {
         backgroundColor: isTransparent ? "transparent" : "rgb(255 255 255/1)",
       }}
     >
-      <div className="headerInnerContainer">
+      <div
+        className={`headerInnerContainer ${lightColor ? "headerWhite" : ""}`}
+      >
         <div direction={"row"} className="header-left">
           {PublicRoutes.map(({ label }) => (
             <span key={label} className="tabLinks">
@@ -33,7 +34,7 @@ const Header = ({ isTransparent = false }) => {
         </div>
         {!authInLocalStorage.get() ? (
           <div className="header-right">
-            <Link to={"/register"}>
+            <Link className="tabLinks" to={"/register"}>
               {location.pathname === "/register" ? (
                 <Chip
                   icon={ICONS.profileIcon}
@@ -45,7 +46,7 @@ const Header = ({ isTransparent = false }) => {
                 "Register"
               )}
             </Link>
-            <Link to={"/login"}>
+            <Link className="tabLinks" to={"/login"}>
               {location.pathname === "/login" ? (
                 <Chip
                   icon={ICONS.profileIcon}

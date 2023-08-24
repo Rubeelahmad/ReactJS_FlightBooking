@@ -15,12 +15,14 @@ import { Link } from "react-router-dom";
 import { authInLocalStorage, validateEmail } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
+import { ICONS } from "../../assets/icons";
 
 const FormContainer = styled(Card)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundImage: "url('../../assets/icons/authBg.svg')",
+  backgroundImage: `url(${ICONS.authBg.props.src})`,
+  padding: "25px",
 }));
 
 const AuthCard = styled(Card)(({ theme }) => ({

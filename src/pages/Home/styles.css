@@ -1,11 +1,36 @@
 .bannerImage {
-  width: 1440px;
+  width: 100%;
   height: 820px;
   position: absolute;
   top: 0;
   left: 0;
-  /* width: 100vw; */
   z-index: -1;
+}
+
+.bannerImage>img {
+  width: 100%;
+}
+
+.banner-content {
+  width: 634px;
+  height: 400px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin-left: 50px;
+  justify-content: center;
+}
+
+.start-button {
+  width: 213px;
+  height: 58px;
+  padding: 15px 25px 15px 25px;
+  border-radius: 30px !important;
+  gap: 10px;
+}
+
+.banner-title {
+  color: var(--text-white);
 }
 
 .pagination {
