@@ -71,3 +71,8 @@
     text-transform: capitalize !important;
     border-radius: 25px !important;
 }
+
+.flightBottomTags-chips {
+    column-gap: 10px;
+    display: flex;
+}

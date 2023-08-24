@@ -9,7 +9,9 @@ const Footer = () => {
         <div className="footerInnerContainer">
           <div direction={"row"} className="header-left">
             {PublicRoutes.map(({ label }) => (
-              <span key={label}>{label}</span>
+              <span className="tabLinks" key={label}>
+                {label}
+              </span>
             ))}
           </div>
           <div className="header-left">
@@ -19,7 +21,9 @@ const Footer = () => {
               ICONS.instaFooterIcon,
               ICONS.tiktokFooterIcon,
               ICONS.telegramFooterIcon,
-            ].map((icon) => icon)}
+            ].map((icon) => (
+              <span className="tabLinks">{icon}</span>
+            ))}
           </div>
           <span>
             © 2023 Test Powered By{" "}

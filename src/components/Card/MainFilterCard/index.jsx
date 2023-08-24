@@ -150,7 +150,7 @@ const MainFilterCard = () => {
       setTripType(event.target.value);
     };
     return (
-      <>
+      <div className="flightData">
         <div className="flightTabContainer">
           <Select
             variant="standard"
@@ -320,16 +320,14 @@ const MainFilterCard = () => {
 
           <Button
             variant="contained"
-            style={{
-              textTransform: "capitalize",
-            }}
             endIcon={ICONS.search}
             onClick={handleSearch}
+            className="searchFlightBtn"
           >
             Search
           </Button>
         </div>
-      </>
+      </div>
     );
   };
 

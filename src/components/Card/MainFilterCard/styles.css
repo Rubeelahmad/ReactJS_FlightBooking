@@ -5,6 +5,12 @@
     box-shadow: var(--box-shadow) !important;
 }
 
+.flightData {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
 .flightTabContainer {
     display: flex;
     align-items: center;
@@ -30,10 +36,18 @@
     /* Adjust as needed */
 }
 
+.searchFlightBtn {
+    text-transform: capitalize !important;
+    border-radius: var(--border-radius) !important;
+}
+
 .tabSelector {
     display: flex !important;
     flex-direction: row !important;
     column-gap: 5px;
+    margin-block: -10px !important;
+    text-transform: capitalize !important;
+    justify-content: center !important;
 }
 
 /* .tabSelector.Mui-selected {

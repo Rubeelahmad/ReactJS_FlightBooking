@@ -26,6 +26,12 @@
   color: var(--primary-color);
 }
 
+.tabLinks {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-black);
+}
+
 /* Mobile view styles */
 @media (max-width: 768px) {
   .footerInnerContainer {
