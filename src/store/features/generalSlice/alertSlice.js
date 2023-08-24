@@ -7,6 +7,7 @@ const alertSlice = createSlice({
   name: alterConstant.alert,
   initialState: {
     alertMsg: { open: false },
+    loading: false,
   },
   reducers: {
     showAlertMessage: (state, action) => {
@@ -16,9 +17,12 @@ const alertSlice = createSlice({
         severity: action.payload?.severity,
       };
     },
+    setLoading: (state, action) => {
+      state.loading = Boolean(action.payload);
+    },
   },
 });
 
-export const { showAlertMessage } = alertSlice.actions;
+export const { showAlertMessage, setLoading } = alertSlice.actions;
 
 export default alertSlice.reducer;

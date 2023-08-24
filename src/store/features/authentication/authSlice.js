@@ -35,7 +35,7 @@ export const otpValidateUserAsync = createAsyncThunk(
     const response = await api.otpCodeValidateUserAPI(params);
     console.log(response);
     if (response.data?.token) {
-      authInLocalStorage.get(response.data?.token);
+      authInLocalStorage.save(response.data?.token);
     }
     return response;
   }
@@ -64,6 +64,7 @@ const authSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
     },
+    reset: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -76,5 +77,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, reset } = authSlice.actions;
 export default authSlice.reducer;

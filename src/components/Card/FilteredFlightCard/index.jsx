@@ -16,7 +16,10 @@ const FilteredFlightCard = (props) => {
     landingDate,
     journeyTime,
     stops,
+    flight,
+    handleSelectFlight,
   } = props;
+
   return (
     <Card className="filteredFlightContainer">
       <div className="filteredFlightCard">
@@ -47,7 +50,9 @@ const FilteredFlightCard = (props) => {
           </div>
         </div>
 
-        <Button variant="contained">Select Flight</Button>
+        <Button variant="contained" onClick={() => handleSelectFlight(flight)}>
+          Select Flight
+        </Button>
       </div>
     </Card>
   );

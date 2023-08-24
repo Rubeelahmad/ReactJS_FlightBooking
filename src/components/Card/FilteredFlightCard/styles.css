@@ -1,45 +1,46 @@
 .filteredFlightContainer {
-    width: 50%;
-    margin: 10px;
-    padding: 10px;
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  margin-left: 220px;
 }
 
 .filteredFlightCard {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flight-brand {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .flightPrice {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .flight-data {
-    display: flex;
+  display: flex;
 }
 
 .flightContainer-middle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flightEst {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .flightJourney {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .flightJourney-Details {
-    display: flex;
+  display: flex;
 }

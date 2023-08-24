@@ -22,14 +22,18 @@ const registerUser = async (params) => {
 const fetchFlights = async (data) => {
   const path = "api/flights_search";
   const params = {
-    journeyType: "OneWay",
-    adults: 2,
-    childs: 1,
-    infants: 0,
-    class: "Economy",
-    "OriginDestinationInfo[0][airportOriginCode]": "LHE",
-    "OriginDestinationInfo[0][airportDestinationCode]": "DWC",
-    "OriginDestinationInfo[0][departureDate]": "2023-08-31",
+    journeyType: data.journeyType,
+    adults: data.adults,
+    childs: data.childs,
+    infants: data.infants,
+    class: data.class,
+    "OriginDestinationInfo[0][airportOriginCode]": data.airportOriginCode,
+    "OriginDestinationInfo[0][airportDestinationCode]":
+      data.airportDestinationCode,
+    "OriginDestinationInfo[0][departureDate]": data.departureDate,
+    ...(data.returnDate && {
+      "OriginDestinationInfo[0][returnDate]": data.returnDate,
+    }),
   };
   try {
     const queryString = qs.stringify(params, { indices: false });
@@ -38,6 +42,7 @@ const fetchFlights = async (data) => {
     const response = await axios.post(urlWithParams);
     console.log("API Response:", response.data);
     // Handle the API response here
+    return response.data;
   } catch (error) {
     console.error("API Error:", error);
     // Handle errors here

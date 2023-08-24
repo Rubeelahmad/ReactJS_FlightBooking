@@ -9,4 +9,8 @@ export const authInLocalStorage = {
   clear: () => localStorage.clear(),
 };
 
-
+export const generateUniqueId = () => {
+  const timestamp = new Date().getTime();
+  const randomPart = Math.random().toString(36).substr(2, 9); // Generates a random string of length 9
+  return `${timestamp}-${randomPart}`;
+};

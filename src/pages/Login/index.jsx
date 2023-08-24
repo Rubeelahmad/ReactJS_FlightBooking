@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Card,
@@ -14,8 +14,9 @@ import { loginInUserAsync } from "../../store/features/authentication/authSlice"
 import { Link } from "react-router-dom";
 import OTPValidationModal from "../../components/Modal/OTPValidationModal";
 import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
-import { validateEmail } from "../../utils/helpers";
+import { authInLocalStorage, validateEmail } from "../../utils/helpers";
 import { ICONS } from "../../assets/icons";
+import { useNavigate } from "react-router-dom";
 
 const FormContainer = styled(Card)(({ theme }) => ({
   display: "flex",
@@ -74,11 +75,19 @@ const ForgotPasswordLink = styled(Link)({
 const Login = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [otpModalOpen, setOTPModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (authInLocalStorage.get()) {
+      navigate("/");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -160,6 +169,7 @@ const Login = () => {
         {otpModalOpen && (
           <OTPValidationModal
             open={otpModalOpen}
+            email={email}
             onClose={() => setOTPModalOpen(false)}
             onValidate={(val) => console.log("otp", val)}
           />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -12,7 +12,7 @@ import { styled } from "@mui/system";
 import { useDispatch } from "react-redux";
 import { registerUserAsync } from "../../store/features/authentication/authSlice";
 import { Link } from "react-router-dom";
-import { validateEmail } from "../../utils/helpers";
+import { authInLocalStorage, validateEmail } from "../../utils/helpers";
 import { useNavigate } from "react-router-dom";
 import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
 
@@ -72,6 +72,12 @@ const Register = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (authInLocalStorage.get()) {
+      navigate("/");
+    }
+  }, []);
 
   const validateForm = () => {
     const newErrors = {

@@ -5,7 +5,7 @@ import { otpValidateUserAsync } from "../../store/features/authentication/authSl
 import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
 import { useNavigate } from "react-router-dom";
 
-const OTPValidationModal = ({ open, onClose }) => {
+const OTPValidationModal = ({ open, onClose, email }) => {
   const [otpDigits, setOtpDigits] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -67,11 +67,14 @@ const OTPValidationModal = ({ open, onClose }) => {
         >
           We sent an OTP code on your Email.
         </Typography>
+        <Typography variant="h6" align="center">
+          {email}
+        </Typography>
         <Grid
           container
           spacing={2}
           justifyContent="center"
-          style={{ marginTop: 40 }}
+          style={{ marginTop: 20 }}
         >
           {otpDigits.map((digit, index) => (
             <Grid item xs={2} key={index}>

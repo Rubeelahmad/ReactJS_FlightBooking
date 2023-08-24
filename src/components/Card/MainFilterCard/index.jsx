@@ -22,6 +22,7 @@ import "./styles.css";
 import { useSelector, useDispatch } from "react-redux";
 import { showAlertMessage } from "../../../store/features/generalSlice/alertSlice";
 import { getAvailableFightsAsync } from "../../../store/features/flights/flightsSlice";
+import { cities } from "../../../utils/constant";
 
 const flightTypes = [
   { value: "First", label: "First" },
@@ -37,13 +38,13 @@ const MainFilterCard = () => {
   };
 
   const FlightTab = () => {
-    const [tripType, setTripType] = useState("");
+    const [tripType, setTripType] = useState("OneWay");
     const [flightType, setFlightType] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [returnDate, setReturnDate] = useState("");
     const [airportOriginCode, setAirportOriginCode] = useState("");
     const [airportDestinationCode, setAirportDestinationCode] = useState("");
-    const [adults, setAdults] = useState(0);
+    const [adults, setAdults] = useState(2);
     const [children, setChildren] = useState(0);
     const [infants, setInfants] = useState(0);
     const [errors, setErrors] = useState({
@@ -81,10 +82,19 @@ const MainFilterCard = () => {
           airportOriginCode,
           airportDestinationCode,
           adults,
-          children,
+          childs: children,
           infants,
         };
         const resultAction = await dispatch(getAvailableFightsAsync(params));
+        dispatch(
+          showAlertMessage({
+            open: true,
+            message: resultAction.payload?.status
+              ? resultAction.payload?.message
+              : resultAction.payload?.message?.ErrorMessage,
+            severity: resultAction.payload?.status ? "success" : "error",
+          })
+        );
       }
     };
 
@@ -219,7 +229,9 @@ const MainFilterCard = () => {
                   startAdornment: ICONS.profileIcon,
                 }}
                 inputProps={{
-                  min: new Date().toISOString().split("T")[0], // Set the minimum date to today
+                  min: departureDate
+                    ? new Date(departureDate).toISOString().split("T")[0]
+                    : new Date().toISOString().split("T")[0], // Set the minimum date to today
                 }}
                 error={Boolean(errors.returnDate)}
                 helperText={errors.returnDate}
@@ -257,11 +269,7 @@ const MainFilterCard = () => {
         <Tab label="Hotels" />
         <Tab label="Car Rental" />
       </Tabs>
-      <CardContent>
-        {activeTab === 0 && <FlightTab />}
-        {activeTab === 1 && <FlightTab />}
-        {activeTab === 2 && <FlightTab />}
-      </CardContent>
+      <CardContent>{activeTab === 0 && <FlightTab />}</CardContent>
     </Card>
   );
 };

@@ -4,10 +4,18 @@ import PublicRoutes from "../../routes/PublicRoutes";
 import { Chip } from "@mui/material";
 import { ICONS } from "../../assets/icons";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { authInLocalStorage } from "../../utils/helpers";
+import { useNavigate } from "react-router-dom";
+import { reset as authReset } from "../../store/features/authentication/authSlice";
+import { reset as flightReset } from "../../store/features/flights/flightsSlice";
 
 const Header = ({ isTransparent = false }) => {
   const location = useLocation();
-  console.log(location.pathname);
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div
       className="headerWrapper"
@@ -23,32 +31,50 @@ const Header = ({ isTransparent = false }) => {
             </span>
           ))}
         </div>
-        <div className="header-right">
-          <Link to={"/register"}>
-            {location.pathname === "/register" ? (
-              <Chip
-                icon={ICONS.profileIcon}
-                label="Register"
-                variant="outlined"
-                className="loginChip"
-              />
-            ) : (
-              "Register"
-            )}
-          </Link>
-          <Link to={"/login"}>
-            {location.pathname === "/login" ? (
-              <Chip
-                icon={ICONS.profileIcon}
-                label="Login"
-                variant="outlined"
-                className="loginChip"
-              />
-            ) : (
-              "login"
-            )}
-          </Link>
-        </div>
+        {!authInLocalStorage.get() ? (
+          <div className="header-right">
+            <Link to={"/register"}>
+              {location.pathname === "/register" ? (
+                <Chip
+                  icon={ICONS.profileIcon}
+                  label="Register"
+                  variant="outlined"
+                  className="loginChip"
+                />
+              ) : (
+                "Register"
+              )}
+            </Link>
+            <Link to={"/login"}>
+              {location.pathname === "/login" ? (
+                <Chip
+                  icon={ICONS.profileIcon}
+                  label="Login"
+                  variant="outlined"
+                  className="loginChip"
+                />
+              ) : (
+                "login"
+              )}
+            </Link>
+          </div>
+        ) : (
+          <div className="header-right">
+            <Chip
+              icon={ICONS.profileIcon}
+              label="Log Out"
+              variant="outlined"
+              className="loginChip"
+              clickable
+              onClick={() => {
+                dispatch(authReset());
+                dispatch(flightReset());
+                authInLocalStorage.clear();
+                navigate("/login");
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
