@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import "./styles/main.css";
-import AuthLayout from "./layouts/AuthLayout/AuthLayout";
+import PublicLayout from "./layouts/PublicLayout";
 import PublicRoutes from "./routes/PublicRoutes";
 import AlertComponent from "./components/Alert/AlertComponent";
 import { showAlertMessage } from "./store/features/generalSlice/alertSlice";
@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
   return (
     <Router>
-      <AuthLayout>
+      <PublicLayout>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -39,7 +39,7 @@ function App() {
           />
         )}
         {loading && <Loading />}
-      </AuthLayout>
+      </PublicLayout>
     </Router>
   );
 }

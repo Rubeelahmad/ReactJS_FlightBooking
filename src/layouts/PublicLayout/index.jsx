@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import ContactUsFooter from "../../components/ContactUsFooter";
 import { useLocation } from "react-router-dom";
 
-const AuthLayout = ({ children }) => {
+const PublicLayout = ({ children }) => {
   const location = useLocation();
   return (
     <div className="auth-layout">
@@ -20,4 +20,4 @@ const AuthLayout = ({ children }) => {
   );
 };
 
-export default AuthLayout;
+export default PublicLayout;
