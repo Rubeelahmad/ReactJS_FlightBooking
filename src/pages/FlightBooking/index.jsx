@@ -6,10 +6,12 @@ import { generateUniqueId } from "../../utils/helpers";
 import { Button } from "@mui/material";
 import BookingPriceCard from "../../components/Card/FlightBookingCard/BookingPriceCard";
 import BaggageDimentionCard from "../../components/Card/FlightBookingCard/BaggageDimensionCard";
+import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
 
 const FlightBooking = () => {
   const selectedFlight = useSelector((state) => state.flights.selectedFlight);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formDataList, setFormDataList] = useState([]);
   useEffect(() => {
     if (!selectedFlight) {
@@ -80,7 +82,7 @@ const FlightBooking = () => {
             margin: "40px",
           }}
         >
-          <Link to="/">
+          <Link to="/flights">
             <Button
               variant="outlined"
               sx={{ borderRadius: "20px", fontSize: "16px" }}
@@ -90,6 +92,15 @@ const FlightBooking = () => {
           </Link>
           <Button
             variant="outlined"
+            onClick={() => {
+              dispatch(
+                showAlertMessage({
+                  open: true,
+                  message: "Please fill correct info & must fill all field",
+                  severity: "error",
+                })
+              );
+            }}
             sx={{ borderRadius: "20px", fontSize: "16px" }}
           >
             Next

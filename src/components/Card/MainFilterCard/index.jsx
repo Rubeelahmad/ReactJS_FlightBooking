@@ -200,7 +200,9 @@ const MainFilterCard = () => {
               variant="standard"
               placeholder="Dubai(DXB)"
               className="borderless-input"
-              onChange={(e) => setAirportOriginCode(e.target.value)}
+              onChange={(e) =>
+                setAirportOriginCode(e.target.value?.toUpperCase())
+              }
               error={Boolean(errors.airportOriginCode)}
               helperText={errors.airportOriginCode}
             />
@@ -212,7 +214,9 @@ const MainFilterCard = () => {
               variant="standard"
               placeholder="Sharjah(SHJ)"
               className="borderless-input"
-              onChange={(e) => setAirportDestinationCode(e.target.value)}
+              onChange={(e) =>
+                setAirportDestinationCode(e.target.value?.toUpperCase())
+              }
               error={Boolean(errors.airportDestinationCode)}
               helperText={errors.airportDestinationCode}
             />
