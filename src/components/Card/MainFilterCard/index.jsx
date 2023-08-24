@@ -161,15 +161,15 @@ const MainFilterCard = () => {
       <div className="flightData">
         <div className="flightTabContainer">
           <Select
-            variant="standard"
+            variant="outlined"
             value={flightType}
             onChange={handleChange}
-            style={{ minWidth: 150 }}
+            className="mainFilterDropdown"
             displayEmpty
             placeholder="Select Flight Type"
           >
             <MenuItem disabled value="">
-              <p>Select Flight Type</p>
+              <p>Type</p>
             </MenuItem>
             {flightTypes.map((item) => (
               <MenuItem key={item.value} value={item.value}>
