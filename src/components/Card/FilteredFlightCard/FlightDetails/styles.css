@@ -1,0 +1,30 @@
+.flightStopsDetails-container {
+    padding: 10px;
+    margin-block: 20px;
+}
+
+.flightStopsDetailsTop {
+    display: flex;
+}
+
+.flightStopsDetailsTop-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.flightStopsDetailsBody {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flightStopsDetailsBody-left {
+    display: flex;
+    align-items: center;
+}
+
+.flightStopsDetailsBody-leftJourney {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}

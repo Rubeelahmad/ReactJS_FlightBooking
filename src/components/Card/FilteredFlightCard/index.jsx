@@ -30,7 +30,6 @@ const FilteredFlightCard = (props) => {
     handleSelectFlight,
   } = props;
   const [showDetails, setShowDetails] = useState(false);
-
   return (
     <Card className="filteredFlightContainer">
       <div className="filteredFlightCard">
