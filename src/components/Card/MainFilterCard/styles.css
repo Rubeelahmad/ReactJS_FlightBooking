@@ -50,6 +50,14 @@
     justify-content: center !important;
 }
 
+.mainFilterDropdown {
+    border-radius: var(--border-radius) !important;
+}
+
+.mainFilterDropdown>.MuiSelect-select {
+    padding-block: 6px;
+}
+
 /* .tabSelector.Mui-selected {
     color: var(--text-black) !important;
 } */
