@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
-import { Avatar, Button, Card, Chip, Divider, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Card,
+  Chip,
+  Divider,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
 import { ICONS } from "../../../assets/icons";
+import FlightDetails from "./FlightDetails";
 
 const FilteredFlightCard = (props) => {
   const {
@@ -19,6 +29,7 @@ const FilteredFlightCard = (props) => {
     flight,
     handleSelectFlight,
   } = props;
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <Card className="filteredFlightContainer">
@@ -65,13 +76,18 @@ const FilteredFlightCard = (props) => {
           <Chip label="One Way" color="primary" variant="outlined" />
           <Chip label="Round Trip" color="primary" variant="outlined" />
         </div>
-        <div className="flight-seeDetails">
+        <div
+          className="flight-seeDetails"
+          onClick={() => setShowDetails(!showDetails)}
+        >
           <Typography variant="p" color={"var(--primary-color)"}>
             See Details
           </Typography>
           {ICONS.chevronDown}
         </div>
       </div>
+
+      {showDetails && <FlightDetails />}
     </Card>
   );
 };
