@@ -1,41 +1,76 @@
 .mainFilterCard {
-    width: 80%;
-    margin-inline: auto;
-    border-radius: 25px !important;
-    box-shadow: 5px 5px 10px 1px #535353 !important;
+  width: 80%;
+  margin-inline: auto;
+  border-radius: 25px !important;
+  box-shadow: 5px 5px 10px 1px #535353 !important;
 }
 
 .flightTabContainer {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .flight-filterContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .flight-filters {
-    display: flex;
-    column-gap: 5px;
+  display: flex;
+  column-gap: 5px;
 }
 
 .borderless-input .MuiInputBase-root::before,
 .borderless-input .MuiOutlinedInput-notchedOutline {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    padding-left: 8px;
-    /* Adjust as needed */
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding-left: 8px;
+  /* Adjust as needed */
 }
 
 .tabSelector {
-    display: flex !important;
-    flex-direction: row !important;
-    column-gap: 5px;
+  display: flex !important;
+  flex-direction: row !important;
+  column-gap: 5px;
 }
 
 /* .tabSelector.Mui-selected {
     color: var(--text-black) !important;
 } */
+
+/* For mobile view */
+@media (max-width: 768px) {
+  .mainFilterCard {
+    width: 90%; /* Reduce width for better mobile layout */
+    border-radius: 15px !important; /* Adjust border radius */
+    box-shadow: 2px 2px 5px 1px #535353 !important; /* Adjust shadow */
+  }
+
+  .flightTabContainer {
+    flex-direction: column; /* Stack content vertically on mobile */
+  }
+
+  .flight-filterContainer {
+    flex-direction: column; /* Stack content vertically on mobile */
+  }
+
+  .flight-filters {
+    flex-direction: column; /* Stack content vertically on mobile */
+    row-gap: 5px; /* Add vertical spacing between items */
+  }
+
+  .borderless-input .MuiInputBase-root::before,
+  .borderless-input .MuiOutlinedInput-notchedOutline {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding-left: 8px;
+  }
+
+  .tabSelector {
+    flex-direction: column !important; /* Stack tabs vertically on mobile */
+    row-gap: 5px; /* Add vertical spacing between tabs */
+  }
+}
