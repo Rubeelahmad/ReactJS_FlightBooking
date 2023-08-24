@@ -221,7 +221,7 @@ const MainFilterCard = () => {
               label="Departure"
               type="date"
               placeholder="18 Apr 2023"
-              className="borderless-input"
+              className="borderless-input date-input"
               value={departureDate}
               onChange={handleDepartureDateChange}
               InputLabelProps={{
@@ -241,7 +241,7 @@ const MainFilterCard = () => {
                 label="Return"
                 type="date"
                 placeholder="06 May 2023"
-                className="borderless-input"
+                className="borderless-input date-input"
                 value={returnDate}
                 onChange={handleReturnDateChange}
                 InputLabelProps={{

@@ -15,6 +15,7 @@ const LoadingContainer = styled("div")({
   height: "100%",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   zIndex: 9999,
+  color: "var(--text-white)",
 });
 
 const Loading = ({ message = "Loading...", onClose }) => {

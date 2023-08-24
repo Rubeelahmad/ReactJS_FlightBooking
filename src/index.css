@@ -7,6 +7,8 @@
   --primary-color: #1A97D4;
   --font-family: Montserrat;
   --font-weight: 500;
+  --border-radius: 25px;
+  --box-shadow: 3px 3px 5px -3px #535353;
 }
 
 body {
@@ -33,3 +35,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+} */

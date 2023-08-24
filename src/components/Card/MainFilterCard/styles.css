@@ -1,8 +1,8 @@
 .mainFilterCard {
     width: 80%;
     margin-inline: auto;
-    border-radius: 25px !important;
-    box-shadow: 5px 5px 10px 1px #535353 !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--box-shadow) !important;
 }
 
 .flightTabContainer {
@@ -39,3 +39,9 @@
 /* .tabSelector.Mui-selected {
     color: var(--text-black) !important;
 } */
+
+.date-input::-webkit-inner-spin-button,
+.date-input::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

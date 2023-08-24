@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { Avatar, Button, Card } from "@mui/material";
+import { Avatar, Button, Card, Chip, Divider } from "@mui/material";
 import { ICONS } from "../../../assets/icons";
 
 const FilteredFlightCard = (props) => {
@@ -53,6 +53,15 @@ const FilteredFlightCard = (props) => {
         <Button variant="contained" onClick={() => handleSelectFlight(flight)}>
           Select Flight
         </Button>
+      </div>
+
+      <Divider />
+      <div className="flightBottomTags">
+        <div>
+          <Chip label="One Way" color="primary" variant="outlined" />
+          <Chip label="Round Trip" color="primary" variant="outlined" />
+        </div>
+        <span>See Details</span>
       </div>
     </Card>
   );
