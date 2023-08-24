@@ -34,7 +34,7 @@ const OTPValidationModal = ({ open, onClose, email }) => {
       })
     );
     if (resultAction.payload.status) {
-      navigate("/");
+      navigate(-1);
       onClose();
     }
   };

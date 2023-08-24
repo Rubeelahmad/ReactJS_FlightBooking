@@ -22,9 +22,20 @@ import { ICONS } from "../../../assets/icons";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import "./styles.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { showAlertMessage } from "../../../store/features/generalSlice/alertSlice";
-import { getAvailableFightsAsync } from "../../../store/features/flights/flightsSlice";
+import {
+  getAvailableFightsAsync,
+  setTripType,
+  setFlightType,
+  setDepartureDate,
+  setReturnDate,
+  setAirportOriginCode,
+  setAirportDestinationCode,
+  setAdults,
+  setChildren,
+  setInfants,
+} from "../../../store/features/flights/flightsSlice";
 import { useNavigate } from "react-router-dom";
 
 const flightTypes = [
@@ -42,15 +53,19 @@ const MainFilterCard = () => {
   };
 
   const FlightTab = () => {
-    const [tripType, setTripType] = useState("OneWay");
-    const [flightType, setFlightType] = useState("");
-    const [departureDate, setDepartureDate] = useState("");
-    const [returnDate, setReturnDate] = useState("");
-    const [airportOriginCode, setAirportOriginCode] = useState("");
-    const [airportDestinationCode, setAirportDestinationCode] = useState("");
-    const [adults, setAdults] = useState(1);
-    const [children, setChildren] = useState(0);
-    const [infants, setInfants] = useState(0);
+    const tripType = useSelector((state) => state.flights.tripType);
+    const flightType = useSelector((state) => state.flights.flightType);
+    const departureDate = useSelector((state) => state.flights.departureDate);
+    const returnDate = useSelector((state) => state.flights.returnDate);
+    const airportOriginCode = useSelector(
+      (state) => state.flights.airportOriginCode
+    );
+    const airportDestinationCode = useSelector(
+      (state) => state.flights.airportDestinationCode
+    );
+    const adults = useSelector((state) => state.flights.adults);
+    const children = useSelector((state) => state.flights.children);
+    const infants = useSelector((state) => state.flights.infants);
     const [anchorEl, setAnchorEl] = useState(null);
     const [errors, setErrors] = useState({
       tripType: "",
@@ -71,21 +86,21 @@ const MainFilterCard = () => {
 
     const handleIncrement = (type) => {
       if (type === "adult") {
-        setAdults(adults + 1);
+        dispatch(setAdults(adults + 1));
       } else if (type === "child") {
-        setChildren(children + 1);
+        dispatch(setChildren(children + 1));
       } else if (type === "infant") {
-        setInfants(infants + 1);
+        dispatch(setInfants(infants + 1));
       }
     };
 
     const handleDecrement = (type) => {
       if (type === "adult" && adults > 0) {
-        setAdults(adults - 1);
+        dispatch(setAdults(adults - 1));
       } else if (type === "child" && children > 0) {
-        setChildren(children - 1);
+        dispatch(setChildren(children - 1));
       } else if (type === "infant" && infants > 0) {
-        setInfants(infants - 1);
+        dispatch(setInfants(infants - 1));
       }
     };
 
@@ -124,7 +139,8 @@ const MainFilterCard = () => {
             open: true,
             message: resultAction.payload?.status
               ? resultAction.payload?.message
-              : resultAction.payload?.message?.ErrorMessage,
+              : resultAction.payload?.message?.ErrorMessage ||
+                "Result Not Found",
             severity: resultAction.payload?.status ? "success" : "error",
           })
         );
@@ -143,19 +159,19 @@ const MainFilterCard = () => {
     };
 
     const handleDepartureDateChange = (event) => {
-      setDepartureDate(event.target.value);
+      dispatch(setDepartureDate(event.target.value));
     };
 
     const handleReturnDateChange = (event) => {
-      setReturnDate(event.target.value);
+      dispatch(setReturnDate(event.target.value));
     };
 
     const handleChange = (event) => {
-      setFlightType(event.target.value);
+      dispatch(setFlightType(event.target.value));
     };
 
     const handleOptionChange = (event) => {
-      setTripType(event.target.value);
+      dispatch(setTripType(event.target.value));
     };
     return (
       <div className="flightData">
@@ -210,7 +226,7 @@ const MainFilterCard = () => {
               value={airportOriginCode}
               className="borderless-input"
               onChange={(e) =>
-                setAirportOriginCode(e.target.value?.toUpperCase())
+                dispatch(setAirportOriginCode(e.target.value?.toUpperCase()))
               }
               error={Boolean(errors.airportOriginCode)}
               helperText={errors.airportOriginCode}
@@ -225,7 +241,9 @@ const MainFilterCard = () => {
               placeholder="Sharjah(SHJ)"
               className="borderless-input"
               onChange={(e) =>
-                setAirportDestinationCode(e.target.value?.toUpperCase())
+                dispatch(
+                  setAirportDestinationCode(e.target.value?.toUpperCase())
+                )
               }
               error={Boolean(errors.airportDestinationCode)}
               helperText={errors.airportDestinationCode}
