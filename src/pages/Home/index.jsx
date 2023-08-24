@@ -15,8 +15,12 @@ const Home = () => {
           Lörem ipsum krorat ekosiv och sende anime då cringe. Detisk. Egonat.
           Diren den eftersom sojaren, men poligam.
         </span>
-        <Button variant="contained" className="start-button" endIcon={ICONS.sendIconRound}>
-          Send
+        <Button
+          variant="contained"
+          className="start-button"
+          endIcon={ICONS.sendIconRound}
+        >
+          Let’s Start Now
         </Button>
       </div>
       <MainFilterCard />

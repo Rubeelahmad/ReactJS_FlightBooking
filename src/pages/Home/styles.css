@@ -27,6 +27,7 @@
   padding: 15px 25px 15px 25px;
   border-radius: 30px !important;
   gap: 10px;
+  text-transform: "text-capitalize";
 }
 
 .banner-title {

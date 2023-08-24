@@ -22,10 +22,9 @@ import { ICONS } from "../../../assets/icons";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import "./styles.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showAlertMessage } from "../../../store/features/generalSlice/alertSlice";
 import { getAvailableFightsAsync } from "../../../store/features/flights/flightsSlice";
-import { cities } from "../../../utils/constant";
 import { useNavigate } from "react-router-dom";
 
 const flightTypes = [
@@ -154,6 +153,7 @@ const MainFilterCard = () => {
       <>
         <div className="flightTabContainer">
           <Select
+            variant="standard"
             value={flightType}
             onChange={handleChange}
             style={{ minWidth: 150 }}
@@ -280,33 +280,39 @@ const MainFilterCard = () => {
               >
                 <MenuItem>
                   <Typography>Adults</Typography>
-                  <Button onClick={() => handleDecrement("adult")}>
-                    <RemoveIcon />
-                  </Button>
-                  {adults}
-                  <Button onClick={() => handleIncrement("adult")}>
-                    <AddIcon />
-                  </Button>
+                  <div>
+                    <Button onClick={() => handleDecrement("adult")}>
+                      <RemoveIcon />
+                    </Button>
+                    {adults}
+                    <Button onClick={() => handleIncrement("adult")}>
+                      <AddIcon />
+                    </Button>
+                  </div>
                 </MenuItem>
                 <MenuItem>
                   <Typography>Children</Typography>
-                  <Button onClick={() => handleDecrement("child")}>
-                    <RemoveIcon />
-                  </Button>
-                  {children}
-                  <Button onClick={() => handleIncrement("child")}>
-                    <AddIcon />
-                  </Button>
+                  <div>
+                    <Button onClick={() => handleDecrement("child")}>
+                      <RemoveIcon />
+                    </Button>
+                    {children}
+                    <Button onClick={() => handleIncrement("child")}>
+                      <AddIcon />
+                    </Button>
+                  </div>
                 </MenuItem>
                 <MenuItem>
                   <Typography>Infants</Typography>
-                  <Button onClick={() => handleDecrement("infant")}>
-                    <RemoveIcon />
-                  </Button>
-                  {infants}
-                  <Button onClick={() => handleIncrement("infant")}>
-                    <AddIcon />
-                  </Button>
+                  <div>
+                    <Button onClick={() => handleDecrement("infant")}>
+                      <RemoveIcon />
+                    </Button>
+                    {infants}
+                    <Button onClick={() => handleIncrement("infant")}>
+                      <AddIcon />
+                    </Button>
+                  </div>
                 </MenuItem>
               </Menu>
             </div>
@@ -314,7 +320,10 @@ const MainFilterCard = () => {
 
           <Button
             variant="contained"
-            endIcon={ICONS.profileIcon}
+            style={{
+              textTransform: "capitalize",
+            }}
+            endIcon={ICONS.search}
             onClick={handleSearch}
           >
             Search
@@ -326,10 +335,10 @@ const MainFilterCard = () => {
 
   return (
     <Card className="mainFilterCard">
-      <Tabs value={activeTab} onChange={handleTabChange} centered>
-        <Tab label="Flights" />
-        <Tab label="Hotels" />
-        <Tab label="Car Rental" />
+      <Tabs value={activeTab} onChange={handleTabChange}>
+        <Tab className="tabSelector" icon={ICONS.flight} label="Flights" />
+        <Tab className="tabSelector" icon={ICONS.hotel} label="Hotels" />
+        <Tab className="tabSelector" icon={ICONS.car} label="Car Rental" />
       </Tabs>
       <CardContent>{activeTab === 0 && <FlightTab />}</CardContent>
     </Card>

@@ -1,11 +1,14 @@
 .mainFilterCard {
     width: 80%;
     margin-inline: auto;
+    border-radius: 25px !important;
+    box-shadow: 5px 5px 10px 1px #535353 !important;
 }
 
 .flightTabContainer {
     display: flex;
     align-items: center;
+    column-gap: 10px;
 }
 
 .flight-filterContainer {
@@ -15,6 +18,7 @@
 
 .flight-filters {
     display: flex;
+    column-gap: 5px;
 }
 
 .borderless-input .MuiInputBase-root::before,
@@ -25,3 +29,13 @@
     padding-left: 8px;
     /* Adjust as needed */
 }
+
+.tabSelector {
+    display: flex !important;
+    flex-direction: row !important;
+    column-gap: 5px;
+}
+
+/* .tabSelector.Mui-selected {
+    color: var(--text-black) !important;
+} */
