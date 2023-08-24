@@ -101,7 +101,7 @@ const FlightDetails = () => {
                 </div>
                 <div>
                   <h4>{flightName}</h4>
-                  <span>Travel Time: {travelTime}</span>
+                  <span>Travel Time: <span className="flightTravelTime">{travelTime}</span></span>
                 </div>
                 <div>
                   <span>

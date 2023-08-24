@@ -41,4 +41,9 @@
     border-radius: 10px;
     padding-inline: 10px;
     column-gap: 5px;
+    border: 1px solid #E1EDF2;
+}
+
+.flightTravelTime {
+    color: var(--primary-color);
 }
