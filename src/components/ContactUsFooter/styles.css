@@ -38,7 +38,7 @@
 @media (max-width: 768px) {
   .contactUsFooterWrapper {
     height: auto;
-    padding: 15px;
+    padding-block: 15px;
     background-size: cover;
   }
 

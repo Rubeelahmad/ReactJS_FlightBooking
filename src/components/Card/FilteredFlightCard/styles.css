@@ -5,6 +5,9 @@
     margin-inline: auto;
     border-radius: var(--border-radius) !important;
     box-shadow: var(--box-shadow) !important;
+    display: flex;
+    row-gap: 15px;
+    flex-direction: column;
 }
 
 .filteredFlightCard {
@@ -54,4 +57,17 @@
 .flightBottomTags {
     display: flex;
     column-gap: 10px;
+    justify-content: space-between;
+}
+
+.flight-seeDetails {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+}
+
+.selectFlightBtn {
+    text-transform: capitalize !important;
+    border-radius: 25px !important;
 }

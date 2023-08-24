@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { Avatar, Button, Card, Chip, Divider } from "@mui/material";
+import { Avatar, Button, Card, Chip, Divider, Typography } from "@mui/material";
 import { ICONS } from "../../../assets/icons";
 
 const FilteredFlightCard = (props) => {
@@ -50,7 +50,11 @@ const FilteredFlightCard = (props) => {
           </div>
         </div>
 
-        <Button variant="contained" onClick={() => handleSelectFlight(flight)}>
+        <Button
+          variant="contained"
+          onClick={() => handleSelectFlight(flight)}
+          className="selectFlightBtn"
+        >
           Select Flight
         </Button>
       </div>
@@ -61,7 +65,12 @@ const FilteredFlightCard = (props) => {
           <Chip label="One Way" color="primary" variant="outlined" />
           <Chip label="Round Trip" color="primary" variant="outlined" />
         </div>
-        <span>See Details</span>
+        <div className="flight-seeDetails">
+          <Typography variant="p" color={"var(--primary-color)"}>
+            See Details
+          </Typography>
+          {ICONS.chevronDown}
+        </div>
       </div>
     </Card>
   );
