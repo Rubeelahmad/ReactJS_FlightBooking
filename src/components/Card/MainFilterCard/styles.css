@@ -3,6 +3,7 @@
     margin-inline: auto;
     border-radius: var(--border-radius) !important;
     box-shadow: var(--box-shadow) !important;
+    z-index: 11000 !important;
 }
 
 .flightData {

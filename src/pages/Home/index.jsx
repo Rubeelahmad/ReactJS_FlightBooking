@@ -3,6 +3,8 @@ import { ICONS } from "../../assets/icons";
 import MainFilterCard from "../../components/Card/MainFilterCard";
 import "./styles.css";
 import { Button } from "@mui/material";
+import HomePageDummyBackgroundImage from './HomePageDummyBackgroundImage';
+import homePageDummyImage from '../../assets/icons/homePageDummyBackgroundImage.jpg'
 
 const Home = () => {
   return (
@@ -24,6 +26,9 @@ const Home = () => {
         </Button>
       </div>
       <MainFilterCard />
+        {/* Your other content */}
+      {/* <HomePageDummyBackgroundImage imageUrl={homePageDummyImage} /> */}
+  
     </div>
   );
 };
