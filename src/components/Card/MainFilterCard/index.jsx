@@ -16,8 +16,11 @@ import {
   Chip,
   Button,
   Typography,
+  Menu,
 } from "@mui/material";
 import { ICONS } from "../../../assets/icons";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import "./styles.css";
 import { useSelector, useDispatch } from "react-redux";
 import { showAlertMessage } from "../../../store/features/generalSlice/alertSlice";
@@ -46,9 +49,10 @@ const MainFilterCard = () => {
     const [returnDate, setReturnDate] = useState("");
     const [airportOriginCode, setAirportOriginCode] = useState("");
     const [airportDestinationCode, setAirportDestinationCode] = useState("");
-    const [adults, setAdults] = useState(2);
+    const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
     const [infants, setInfants] = useState(0);
+    const [anchorEl, setAnchorEl] = useState(null);
     const [errors, setErrors] = useState({
       tripType: "",
       flightType: "",
@@ -57,6 +61,34 @@ const MainFilterCard = () => {
       airportOriginCode: "",
       airportDestinationCode: "",
     });
+
+    const handleOpenMenu = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseMenu = () => {
+      setAnchorEl(null);
+    };
+
+    const handleIncrement = (type) => {
+      if (type === "adult") {
+        setAdults(adults + 1);
+      } else if (type === "child") {
+        setChildren(children + 1);
+      } else if (type === "infant") {
+        setInfants(infants + 1);
+      }
+    };
+
+    const handleDecrement = (type) => {
+      if (type === "adult" && adults > 0) {
+        setAdults(adults - 1);
+      } else if (type === "child" && children > 0) {
+        setChildren(children - 1);
+      } else if (type === "infant" && infants > 0) {
+        setInfants(infants - 1);
+      }
+    };
 
     const validateForm = () => {
       const newErrors = {
@@ -100,21 +132,6 @@ const MainFilterCard = () => {
         if (resultAction.payload?.status) {
           navigate("/flights");
         }
-      }
-    };
-
-    const handleTravelerInput = (event) => {
-      const inputText = event.target.value;
-      const matches = inputText.match(
-        /(\d+)\s+Adult?,\s+(\d+)\s+Children?,\s+(\d+)\s+Infants?/i
-      );
-
-      if (matches) {
-        const [, adultsCount, childrenCount, infantsCount] =
-          matches.map(Number);
-        setAdults(adultsCount);
-        setChildren(childrenCount);
-        setInfants(infantsCount);
       }
     };
 
@@ -243,16 +260,56 @@ const MainFilterCard = () => {
               />
             )}
             <Divider orientation="vertical" variant="middle" flexItem />
-            <TextField
-              label="Travelers"
-              InputProps={{
-                startAdornment: ICONS.profileIcon,
-              }}
-              variant="standard"
-              placeholder="1 Adult, 0 Child, 0 Infants"
-              className="borderless-input"
-              onChange={handleTravelerInput}
-            />
+
+            <div>
+              <TextField
+                label="Travelers"
+                InputProps={{
+                  startAdornment: ICONS.profileIcon,
+                }}
+                variant="standard"
+                value={`${adults} Adult, ${children} Child, ${infants} Infant`}
+                placeholder="1 Adult, 0 Child, 0 Infants"
+                className="borderless-input"
+                onClick={handleOpenMenu}
+              />
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleCloseMenu}
+              >
+                <MenuItem>
+                  <Typography>Adults</Typography>
+                  <Button onClick={() => handleDecrement("adult")}>
+                    <RemoveIcon />
+                  </Button>
+                  {adults}
+                  <Button onClick={() => handleIncrement("adult")}>
+                    <AddIcon />
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Typography>Children</Typography>
+                  <Button onClick={() => handleDecrement("child")}>
+                    <RemoveIcon />
+                  </Button>
+                  {children}
+                  <Button onClick={() => handleIncrement("child")}>
+                    <AddIcon />
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Typography>Infants</Typography>
+                  <Button onClick={() => handleDecrement("infant")}>
+                    <RemoveIcon />
+                  </Button>
+                  {infants}
+                  <Button onClick={() => handleIncrement("infant")}>
+                    <AddIcon />
+                  </Button>
+                </MenuItem>
+              </Menu>
+            </div>
           </div>
 
           <Button
