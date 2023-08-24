@@ -23,6 +23,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { showAlertMessage } from "../../../store/features/generalSlice/alertSlice";
 import { getAvailableFightsAsync } from "../../../store/features/flights/flightsSlice";
 import { cities } from "../../../utils/constant";
+import { useNavigate } from "react-router-dom";
 
 const flightTypes = [
   { value: "First", label: "First" },
@@ -32,6 +33,7 @@ const flightTypes = [
 ];
 const MainFilterCard = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
@@ -95,13 +97,16 @@ const MainFilterCard = () => {
             severity: resultAction.payload?.status ? "success" : "error",
           })
         );
+        if (resultAction.payload?.status) {
+          navigate("/flights");
+        }
       }
     };
 
     const handleTravelerInput = (event) => {
       const inputText = event.target.value;
       const matches = inputText.match(
-        /(\d+)\s+Adults?,\s+(\d+)\s+Children?,\s+(\d+)\s+Infants?/i
+        /(\d+)\s+Adult?,\s+(\d+)\s+Children?,\s+(\d+)\s+Infants?/i
       );
 
       if (matches) {
@@ -244,7 +249,7 @@ const MainFilterCard = () => {
                 startAdornment: ICONS.profileIcon,
               }}
               variant="standard"
-              placeholder="2 Adults, 1 Child, 0 Infants"
+              placeholder="1 Adult, 0 Child, 0 Infants"
               className="borderless-input"
               onChange={handleTravelerInput}
             />

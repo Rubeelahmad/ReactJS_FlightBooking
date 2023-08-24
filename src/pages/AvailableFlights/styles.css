@@ -1,0 +1,36 @@
+.bannerImage {
+  width: 1440px;
+  height: 820px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 100vw; */
+  z-index: -1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+/* Style for active circle */
+.circle.active {
+  border-color: #007bff;
+  background-color: #007bff;
+  color: #fff;
+}
