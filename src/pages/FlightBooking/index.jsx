@@ -7,6 +7,8 @@ import { Button } from "@mui/material";
 import BookingPriceCard from "../../components/Card/FlightBookingCard/BookingPriceCard";
 import BaggageDimentionCard from "../../components/Card/FlightBookingCard/BaggageDimensionCard";
 import { showAlertMessage } from "../../store/features/generalSlice/alertSlice";
+import MainFilterCard from "../../components/Card/MainFilterCard";
+import { ICONS } from "../../assets/icons";
 
 const FlightBooking = () => {
   const selectedFlight = useSelector((state) => state.flights.selectedFlight);
@@ -51,6 +53,18 @@ const FlightBooking = () => {
   if (selectedFlight) {
     return (
       <>
+
+<div className="bannerImageFlights">{ICONS.flightsMainBanner}</div>
+      <div className="banner-content">
+        <h1 class="flightsMainBanner">Available Flights</h1>
+        <h5 class="flightsMainBanner-route page">
+          <a href="/">Home</a>
+          <div class="circleAfterHome"></div>
+          <b color="#FFFFFF">Available Flights</b>
+        </h5>
+      </div>
+
+      <MainFilterCard />
         <div
           style={{
             display: "flex",
